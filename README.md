@@ -1,1 +1,1 @@
-# corso_cpp
+Svolgimento degli esercizi assegnati a lezione
