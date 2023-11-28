@@ -1,7 +1,8 @@
 #ifndef class_utilities
 #define class_utilities
 
-//#include <cmath>
+#include <cmath>
+using namespace std;
 
 class Utilities{
 

@@ -1,9 +1,8 @@
 #ifndef read_function
 #define read_function
 
-//#include <fstream>
-//#include "/content/drive/MyDrive/Università/C++/Esercizi/Particles/mean_v2/header/class_event.h"
-//using namespace std;
+#include <fstream>
+using namespace std;
 
 //definiamo delle variabili globali per mantenere in modo temporaneo la lettura del file prima dell'aseegnazione alla classe
 //facendo così evitiamo che vengano create e distrutte continuamente
@@ -16,7 +15,7 @@
   float momentum_x_r = 0;
   float momentum_y_r = 0;
   float momentum_z_r = 0;
-  float number_particles_r = 0;
+  int number_particles_r = 0;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -32,8 +31,8 @@ Event* read(ifstream& file_reading) {
     file_reading >> impact_z_r;
     file_reading >> number_particles_r;
 
-    ptr_classevent = new Event( event_id_r, impact_x_r, impact_y_r, impact_z_r );  //alloco la memoria per un "Event", la assegno ad un puntatore (devo accedere con ->)
-
+    ptr_classevent = new Event( event_id_r, impact_x_r, impact_y_r, impact_z_r, number_particles_r );  //alloco la memoria per un "Event", la assegno ad un puntatore (devo accedere con ->)
+	
     for (int i=0; i< ptr_classevent -> nParticles(); ++i) {
 
       file_reading >> electric_field_r;
@@ -47,10 +46,10 @@ Event* read(ifstream& file_reading) {
 
   }
 
-  else return nullptr;                                                                              //se siamo alla fine del file ritorniamo un puntatore nullo
+  else return nullptr;     //se siamo alla fine del file ritorniamo un puntatore nullo
 
-  return ptr_classevent;                                                                            //ritornando il puntatore ritorno, per così dire, la memoria
+  return ptr_classevent;   //ritornando il puntatore ritorno, per così dire, la memoria
 
-}
+};
 
 #endif

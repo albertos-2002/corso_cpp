@@ -12,9 +12,8 @@ using namespace std;
 #include "header/mass.h"
 #include "header/class_massmean.h"
 
-
 int main( int terminal_index, char* terminal_string[] ){
-
+  
   string nome_file = terminal_string[1];
   
   ifstream reading_file( nome_file );
@@ -22,17 +21,16 @@ int main( int terminal_index, char* terminal_string[] ){
   MassMean obj_K0( 0.495 , 0.500 );
   MassMean obj_L0( 1.115 , 1.116 );
 
-
   if( !reading_file.is_open() ) return 1;                       // controllo apertura file
 
-  while( !reading_file.eof() ){
+  while( !reading_file.eof() ){  
 
     Event* eventclass_ptr = read( reading_file );               //questa istruzione dovrebbe creare tutte le memorie necessarie
 
     obj_K0.add( *eventclass_ptr );
     obj_L0.add( *eventclass_ptr );
 
-//    dump( *eventclass_ptr );
+    dump( *eventclass_ptr );
 
     delete eventclass_ptr;
 

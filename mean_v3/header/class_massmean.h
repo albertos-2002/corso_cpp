@@ -1,11 +1,8 @@
 #ifndef class_massmean
 #define class_massmean
 
-//#include <cmath>
-//#include "/content/drive/MyDrive/Università/C++/Esercizi/Particles/mean_v2/header/class_event.h"
-//#include "/content/drive/MyDrive/Università/C++/Esercizi/Particles/mean_v2/header/class_constants.h"
-//#include "/content/drive/MyDrive/Università/C++/Esercizi/Particles/mean_v2/header/class_utilities.h"
-//#include "/content/drive/MyDrive/Università/C++/Esercizi/Particles/mean_v2/header/mass.h"
+#include <cmath>
+using namespace std;
 
 class MassMean {
 
@@ -24,7 +21,7 @@ private:
 
 public:
 
-  MassMean( double min_mass, double max_mass):                                                      //costruttore
+  MassMean( double min_mass, double max_mass):            //costruttore
 
   min_invariant_mass(min_mass),
   max_invariant_mass(max_mass)
@@ -37,7 +34,7 @@ public:
     massa_tmp = 0;
   }
 
-  ~MassMean(){  }                                                                                   //distruttore
+  ~MassMean(){  }                      //distruttore
 
   void add( const Event& evento_a ){
 

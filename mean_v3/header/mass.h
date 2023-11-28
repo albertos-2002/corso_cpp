@@ -1,11 +1,5 @@
 #include <cmath>
 #include <vector>
-#include "class_constants.h"
-#include "class_event.h"
-#include "class_utilities.h"
-//#include <cmath>
-//#include <vector>
-//#include ""
 using namespace std;
 
 double mass( const Event& evento_m ) {
