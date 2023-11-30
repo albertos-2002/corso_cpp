@@ -3,13 +3,13 @@
 #include <fstream>
 #include <cmath>
 using namespace std;
-#include "/header/class_event.h"
-#include "/header/class_constants.h"
-#include "/header/class_utilities.h"
-#include "/header/dump.h"
-#include "/header/read.h"
-#include "/header/mass.h"
-#include "/header/class_massmean.h"
+#include "header/class_event.h"
+#include "header/class_constants.h"
+#include "header/class_utilities.h"
+#include "header/dump.h"
+#include "header/read.h"
+#include "header/mass.h"
+#include "header/class_massmean.h"
 
 
 int main( int terminal_index, char* terminal_string[] ){
@@ -20,11 +20,11 @@ int main( int terminal_index, char* terminal_string[] ){
   MassMean obj_L0( 1.115 , 1.116 );
 
 
-  if( !reading_file.is_open() ) return 1;                                                           // controllo apertura file
+  if( !reading_file.is_open() ) return 1;     // controllo apertura file
 
   while( !reading_file.eof() ){
 
-    Event* eventclass_ptr = read( reading_file );                                                   //questa istruzione dovrebbe creare tutte le memorie necessarie
+    Event* eventclass_ptr = read( reading_file );  //questa istruzione dovrebbe creare tutte le memorie necessarie
 
     obj_K0.add( *eventclass_ptr );
     obj_L0.add( *eventclass_ptr );

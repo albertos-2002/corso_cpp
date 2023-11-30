@@ -18,30 +18,28 @@ class Event {
   float impact_x;
   float impact_y;
   float impact_z;
-  int number_particles;
   vector<Particle*> ptr_partstruct;
 
   //------------------------------------------------------------------------------------------------
 
   public:
 
-  Event( int id_evento, float impatto_x, float impatto_y, float impatto_z, int numero_particelle):     //costruttore 
+  Event( int id_evento, float impatto_x, float impatto_y, float impatto_z):     //costruttore 
 
   event_id(id_evento),
   impact_x(impatto_x),
   impact_y(impatto_y),
-  impact_z(impatto_z),
-  number_particles(numero_particelle)
+  impact_z(impatto_z)
   {
     ptr_partstruct.reserve(10);		//al puntatore di puntatori alloco la memoria per 10 strutture particle
-	
-    for (int i=0; i< number_particles; ++i){       //creazione dinamica delle Particle
-      ptr_partstruct.push_back(new Particle);             
-    }
   }
 
   ~Event(){                                             //distruttore
-
+    
+    for (Particle* c : ptr_partstruct){
+    delete c;
+    }
+    
     ptr_partstruct.clear();
     
   }
@@ -52,12 +50,12 @@ class Event {
 
   void add(int campo_elettrico, float momento_x, float momento_y, float momento_z, int& index){
 
-    if (index < ptr_partstruct.size() ){
+      ptr_partstruct.push_back(new Particle);      
+      
       ptr_partstruct.at(index) -> electric_field = campo_elettrico;
       ptr_partstruct.at(index) -> momentum_x = momento_x;
       ptr_partstruct.at(index) -> momentum_y = momento_y;
       ptr_partstruct.at(index) -> momentum_z = momento_z;
-    }
 
     return;
 
@@ -80,7 +78,7 @@ class Event {
   float zdecay() const {
     return impact_z;
   }
-
+  
   int nParticles() const {
     return ptr_partstruct.size();
   }

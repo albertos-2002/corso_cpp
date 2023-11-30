@@ -31,9 +31,9 @@ Event* read(ifstream& file_reading) {
     file_reading >> impact_z_r;
     file_reading >> number_particles_r;
 
-    ptr_classevent = new Event( event_id_r, impact_x_r, impact_y_r, impact_z_r, number_particles_r );  //alloco la memoria per un "Event", la assegno ad un puntatore (devo accedere con ->)
+    ptr_classevent = new Event( event_id_r, impact_x_r, impact_y_r, impact_z_r);  //alloco la memoria per un "Event", la assegno ad un puntatore (devo accedere con ->)
 	
-    for (int i=0; i< ptr_classevent -> nParticles(); ++i) {
+    for (int i=0; i< number_particles_r; ++i) {
 
       file_reading >> electric_field_r;
       file_reading >> momentum_x_r;
