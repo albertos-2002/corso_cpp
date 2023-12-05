@@ -7,16 +7,25 @@ using namespace std;
 #include "header/class_event.h"
 #include "header/class_constants.h"
 #include "header/class_utilities.h"
-#include "header/dump.h"
-#include "header/read.h"
-#include "header/mass.h"
 #include "header/class_massmean.h"
+#include "header/funzioni.h"
 
 int main( int terminal_index, char* terminal_string[] ){
   
   string nome_file = terminal_string[1];
   
   ifstream reading_file( nome_file );
+  
+  //dichiarazione del dump --------------------------------------------
+      string dump_bool = terminal_string[2];
+    if (dump_bool == "dump"){
+    cout << "Dump attivato" << endl;    
+    }
+    
+    else {
+    cout << "Dump disattivato" << endl;
+    }
+  //-----------------------------------------------------------------  
 
   MassMean obj_K0( 0.495 , 0.500 );
   MassMean obj_L0( 1.115 , 1.116 );
@@ -29,8 +38,10 @@ int main( int terminal_index, char* terminal_string[] ){
 
     obj_K0.add( *eventclass_ptr );
     obj_L0.add( *eventclass_ptr );
-
+    
+    if (dump_bool == "dump"){
     dump( *eventclass_ptr );
+    }
 
     delete eventclass_ptr;
 

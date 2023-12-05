@@ -1,7 +1,8 @@
 #ifndef class_massmean
 #define class_massmean
 
-#include <cmath>
+#include "class_event.h"
+
 using namespace std;
 
 class MassMean {
@@ -21,58 +22,22 @@ private:
 
 public:
 
-  MassMean( double min_mass, double max_mass):            //costruttore
+  //costruttore
+  MassMean( double min_mass, double max_mass);           
 
-  min_invariant_mass(min_mass),
-  max_invariant_mass(max_mass)
-  {
-    selected_events = 0;
-    sum_masses = 0;
-    sqr_sum_masses = 0;
-    mean = 0;
-    rms = 0;
-    massa_tmp = 0;
-  }
+  //distruttore
+  ~MassMean();
 
-  ~MassMean(){  }                      //distruttore
+  void add( const Event& evento_a );
 
-  void add( const Event& evento_a ){
 
-    massa_tmp = mass( evento_a );
+  void compute();
 
-    if ( massa_tmp <= max_invariant_mass && massa_tmp >= min_invariant_mass ) {
+  int nEvents();
 
-      sum_masses += massa_tmp ;
-      sqr_sum_masses += (massa_tmp*massa_tmp) ;
-      selected_events++ ;
+  double mMean() const;
 
-    }
-
-    return;
-
-  }
-
-  void compute() {
-
-    mean = sum_masses / selected_events;
-    rms = sqrt( (sqr_sum_masses / selected_events) - (mean*mean) ) ;
-
-    return;
-
-  }
-
-  int nEvents(){
-    return selected_events;
-  }
-
-  double mMean() const {
-    return mean;
-  }
-
-  double mRMS() const {
-    if(rms > 0) return rms;
-    else return 0;
-  }
+  double mRMS() const;
 
 };
 

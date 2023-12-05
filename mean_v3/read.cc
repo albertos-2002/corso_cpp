@@ -1,6 +1,8 @@
 #ifndef read_function
 #define read_function
 
+#include "header/class_event.h"
+
 #include <fstream>
 using namespace std;
 

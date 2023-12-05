@@ -1,3 +1,7 @@
+#include "header/class_constants.h"
+#include "header/class_utilities.h"
+#include "header/class_event.h"
+
 #include <cmath>
 #include <vector>
 using namespace std;
