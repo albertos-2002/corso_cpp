@@ -20,16 +20,29 @@ class EventReadFromFile: public EventSource {
 
   ~EventReadFromFile() override;
 
+  const bool file_state();
+
+  // read and event  //spostata a public
+  const Event* readFile();
+
  private:
 
   // get an event
   const Event* get() override;
 
   // input file
-  std::ifstream* file;
-
-  // read and event
-  const Event* readFile();
+  std::ifstream* file;  
+  
+  
+  float event_id_r = 0;
+  float impact_x_r = 0;
+  float impact_y_r = 0;
+  float impact_z_r = 0;
+  int electric_field_r = 0;
+  float momentum_x_r = 0;
+  float momentum_y_r = 0;
+  float momentum_z_r = 0;
+  int number_particles_r = 0;
 
 };
 
