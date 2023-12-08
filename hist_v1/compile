@@ -1,0 +1,7 @@
+g++ -Wall $(root-config --cflags --libs) particleHist_v1.cpp AnalysisSteering.cc class_event.cc class_massmean.cc class_utilities.cc EventDump.cc EventReadFromFile.cc EventSim.cc EventSource.cc mass.cc ParticleMass.cc -o particleHist_v1_exe
+
+esecuzione: 
+
+./particleHist_v1_exe input ../particles_events
+
+./particleHist_v1_exe sim "numero_eventi" "seed"
