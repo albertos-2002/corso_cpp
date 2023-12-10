@@ -9,7 +9,7 @@
 using namespace std;
 
 ProperTime::ProperTime(const Event& evento_m) {
-   ParticleReco* ptr_particlereco_internal = new ParticleReco(); //particle reco è la ex funzione mass, mi calcola i valori di mass ecc
+   ptr_particlereco_internal = new ParticleReco(); //particle reco è la ex funzione mass, mi calcola i valori di mass ecc
    ptr_particlereco_internal -> update( evento_m );
 
 }

@@ -22,9 +22,12 @@ int main ( int terminal_index, char* terminal_string[] ) {
   EventSource* ptr_eventsource = SourceFactory::create( ptr_analysisinfo );
   
   // create a list of analyzers
+  cout << "chiamata alla funzione create di analysisfactory" << endl;
   vector<AnalysisSteering*> aList = AnalysisFactory::create( ptr_analysisinfo );
 
   // initialize all analyzers
+  
+  cout << "M: chiamata alla funzione beginjob" << endl;
   for ( auto as: aList ) as->beginJob();
 
   ptr_eventsource -> run();

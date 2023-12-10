@@ -1,4 +1,4 @@
-g++ -Wall $(root-config --cflags --libs) -I ../util/include particleHist_v4.cpp ParticleReco.cc AnalysisFactory.cc AnalysisInfo.cc SourceFactory.cc AnalysisSteering.cc class_event.cc class_massmean.cc class_utilities.cc EventDump.cc EventReadFromFile.cc EventSim.cc EventSource.cc ParticleMass.cc  -o particleHist_v4_exe
+g++ -Wall $(root-config --cflags --libs) -I ../util/include particleHist_v4.cpp ParticleReco.cc AnalysisFactory.cc AnalysisInfo.cc SourceFactory.cc AnalysisSteering.cc class_event.cc class_massmean.cc class_utilities.cc EventDump.cc EventReadFromFile.cc EventSim.cc EventSource.cc ParticleMass.cc LifetimeFit.cc ParticleLifetime.cc ProperTime.cc -o particleHist_v4_exe
 
 LifetimeFit.cc ParticleLifetime.cc ProperTime.cc
 

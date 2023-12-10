@@ -45,6 +45,8 @@ ParticleMass::~ParticleMass(){
 
 void ParticleMass::beginJob(){
 
+cout << "chiamata alla ParticleMass" << endl;
+
   ptr_particle_pm.reserve(2);
 
   //ipotesi lambda
