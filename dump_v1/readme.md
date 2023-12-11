@@ -1,11 +1,12 @@
+<div style="text-align: right">
+
+[Back to index](../README.md)
+</div>
+
 # ParticleDump versione 1
 
 ## Main function
 ---
-
-Da riga di comando viene passato come argomento il nome del file che viene poi estratto e passato come argomento all funzione `read`
-
-La classica sintassi per gli argomenti del main prevede che le *key word* passate da riga di comando vengano contenute in un `array di puntatori a char`, ognuno di questi *puntatori* puntano al primo elemento di un `array di char` in modo tale da poter contenere intere parole
 
 La sequenza del main è la seguente:
 
