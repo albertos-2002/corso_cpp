@@ -4,6 +4,9 @@
 using namespace std;
 
 //definizione delle strutture e delle variabili globali
+unsigned int numero_totale_eventi_considerati = 0;
+unsigned int numero_totale_eventi_letti = 0;
+
 
 struct Particle {                                                                                   // stessa dimensione della versione 1
 
@@ -65,6 +68,8 @@ Event* read(ifstream& file_reading) {
       file_reading >> eventptr_read -> ptr_partstruct[i] -> momentum_z;
 
     }
+
+  numero_totale_eventi_letti = numero_totale_eventi_letti + 1;
 
   }
 
@@ -181,7 +186,7 @@ double mass( const Event& evento ) {
 
   }
 
-  if ( counter_positive_particles != 1 && counter_negative_particles != 1 ) return -1;
+  if ( counter_positive_particles != 1 || counter_negative_particles != 1 ) return -1;
 
   invariantmass_K0 = massa_invariante( sum_momentum_x, sum_momentum_y, sum_momentum_z, sum_energy_K0 );
   invariantmass_L0 = massa_invariante( sum_momentum_x, sum_momentum_y, sum_momentum_z, sum_energy_L0 );
@@ -210,6 +215,9 @@ bool add( const Event& evento, const float& massMin, const float& massMax, doubl
 
     sum_masse_invarianti += massa_invariante_test;
     sqr_sum_masse_invarianti += (massa_invariante_test*massa_invariante_test);
+
+    numero_totale_eventi_considerati = numero_totale_eventi_considerati + 1 ;  
+
     return true;
 
   }
@@ -262,6 +270,12 @@ int main( int terminal_index, char* terminal_string[] ) {
 
   cout << "Mean: " << mean_masse_invarianti << endl;
   cout << "RMS:  " << rms_masse_invarianti << endl;
+
+  cout << "Numero di eventi letti dal file" << endl;
+  cout << numero_totale_eventi_letti << endl;
+  cout << "numero totale di accettati per il range di massa invariante" << endl;
+  cout << numero_totale_eventi_considerati << endl;
+
 
   return 0;
 

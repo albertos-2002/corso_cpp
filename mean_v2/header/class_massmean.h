@@ -7,18 +7,22 @@
 //#include "/content/drive/MyDrive/Università/C++/Esercizi/Particles/mean_v2/header/class_utilities.h"
 //#include "/content/drive/MyDrive/Università/C++/Esercizi/Particles/mean_v2/header/mass.h"
 
+
+
 class MassMean {
 
 private:
 
   double min_invariant_mass;
   double max_invariant_mass;
-  int selected_events;
+  int selected_events = 0;
   double sum_masses;
   double sqr_sum_masses;
   double mean;
   double rms;
   double massa_tmp;
+
+  unsigned int eventi_scartati = 0;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -47,10 +51,12 @@ public:
 
       sum_masses += massa_tmp ;
       sqr_sum_masses += (massa_tmp*massa_tmp) ;
-      selected_events++ ;
+      selected_events = selected_events +1 ;
 
     }
-
+    else{
+      eventi_scartati = eventi_scartati +1 ;
+    }
     return;
 
   }
@@ -75,6 +81,10 @@ public:
   double mRMS() const {
     if(rms > 0) return rms;
     else return 0;
+  }
+  
+  unsigned int EventiScartati() const {
+    return eventi_scartati;
   }
 
 };

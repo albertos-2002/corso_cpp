@@ -1,6 +1,8 @@
-
 #include <iostream>
 #include <fstream>
+
+//piccolo controllo del numero di eventi totali del file
+unsigned int total_number_of_events = 0;
 
 int read( std::ifstream& reading_file_read, float& impact_x_read, float& impact_y_read, float& impact_z_read, int electric_field_read[], float momentum_x_read[], float momentum_y_read[], float momentum_z_read[])  {
 
@@ -19,6 +21,9 @@ for(int i=0; i< number_particles_read; i++) {
   reading_file_read >> momentum_z_read[i];
 
   }
+
+//---------------------------------------
+  total_number_of_events = total_number_of_events + 1;
 
 return number_particles_read ;
 
@@ -65,6 +70,10 @@ while(reading_file >> measure_id) {
   dump( measure_id, impact_x, impact_y, impact_z, number_particles, electric_field, momentum_x, momentum_y, momentum_z);
 
   }
+
+//-------------------------------------------------
+  std::cout << "Il numero totale di eventi presenti nel file è:" << std::endl;
+  std::cout << total_number_of_events << std::endl;
 
 return 0;
 
