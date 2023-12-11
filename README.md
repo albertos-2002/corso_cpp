@@ -57,4 +57,7 @@ come potrebbe essere necessario cambiare gli include da <> a ""
 ---
 Il comando di esecuzione completo è presente nel file *compile*
 
+Da riga di comando viene passato come argomento il nome del file che viene poi estratto e passato come argomento all funzione `read`
+
+La classica sintassi per gli argomenti del main prevede che le *key word* passate da riga di comando vengano contenute in un `array di puntatori a char`, ognuno di questi *puntatori* puntano al primo elemento di un `array di char` in modo tale da poter contenere intere parole
 
