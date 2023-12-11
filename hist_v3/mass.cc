@@ -60,8 +60,8 @@ double mass( const Event& evento_m ) {
   invariantmass_K0 = Utilities::massa_invariante( sum_momentum_x, sum_momentum_y, sum_momentum_z, sum_energy_K0 );
   invariantmass_L0 = Utilities::massa_invariante( sum_momentum_x, sum_momentum_y, sum_momentum_z, sum_energy_L0 );
 
-  double controllo_K0 = invariantmass_K0 - Constants::massK0;
-  double controllo_L0 = invariantmass_L0 - Constants::massLambda0;
+  double controllo_K0 = abs(invariantmass_K0 - Constants::massK0);
+  double controllo_L0 = abs(invariantmass_L0 - Constants::massLambda0);
 
   if ( controllo_K0 < controllo_L0 ) {
     return invariantmass_K0;
