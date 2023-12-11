@@ -1,0 +1,3 @@
+g++ -Wall particleDump.cpp read.cc dump.cc -o particledump_exe
+
+./particledump_exe ../particles_events
