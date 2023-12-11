@@ -20,7 +20,7 @@ Nel ciclo `while`, che rimane `true` fino al raggiungimento del carattere specia
 ## Read function `int`
 ---
 
-La funzione `read` si occupa di leggere gli eventi da un file di testo
+La funzione `read` si occupa di leggere gli eventi da un [file di testo](../particles_events)
 
 La funzione accetta per *pass-by-reference* gli argomenti:
 

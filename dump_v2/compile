@@ -1,0 +1,3 @@
+g++ -Wall particleDump_v2.cpp read.cc dump.cc clear.cc -o particleDump_v2_exe
+
+./particleDump_v2_exe ../particles_events
