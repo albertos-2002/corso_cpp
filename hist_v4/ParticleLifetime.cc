@@ -25,7 +25,7 @@ class ParticleLifetime;
 class ParticleLifetimeFactory: public AnalysisFactory::AbsFactory {
  public:
   // assign "plot" as name for this analyzer and factory
-  ParticleLifetimeFactory(): AnalysisFactory::AbsFactory( "plot2" ) {}
+  ParticleLifetimeFactory(): AnalysisFactory::AbsFactory( "plot_time" ) {}
   // create an ElementReco when builder is run
   AnalysisSteering* create( const AnalysisInfo* info ) override {
     return new ParticleLifetime( info );

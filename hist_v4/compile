@@ -4,9 +4,11 @@ LifetimeFit.cc ParticleLifetime.cc ProperTime.cc
 
 esecuzione: 
 
-./particleHist_v4_exe plot input ../particles_events
+./particleHist_v4_exe plot_mass input ../particles_events
+./particleHist_v4_exe plot_time input ../particles_events
 ./particleHist_v4_exe dump input ../particles_events
-./particleHist_v4_exe plot dump input ../particles_events
+./particleHist_v4_exe plot_mass dump input ../particles_events
+./particleHist_v4_exe plot_time dump input ../particles_events
 
 ./particleHist_v4_exe plot sim "numero_eventi" "seed"
 ./particleHist_v4_exe dump sim "numero_eventi" "seed"
