@@ -1,7 +1,9 @@
 <div style="text-align: right">
 
 [Back to index](../README.md)
+
 </div>
+
 
 # Particle Mean v1
 ---
@@ -41,9 +43,9 @@ Il main è strutturato come segue:
 
 - calcolo di RMS
 
-$$ \sqrt{ \frac{somma dei quadrati massa invariante}{numero eventi accettati} - {media masse invarianti}^2 } $$
-
 	- `if` se positivo il valore viene assegnato alla variabile, se negativo viene impostato a 0
+
+$$ \sqrt{ \frac{somma \ dei \ quadrati \ massa \ invariante}{numero \ eventi \ accettati} - {media \ masse \ invarianti}^2 } $$
 
 - print a schermo dei risultati
 
