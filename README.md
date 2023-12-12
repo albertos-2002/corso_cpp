@@ -6,7 +6,7 @@
 
 - [x] [dump v2](dump_v2/readme.md)
 
-- [ ] [mean v1](mean_v1/readme.md)
+- [x] [mean v1](mean_v1/readme.md)
 
 - [ ] [mean v2](mean_v2/readme.md)
 
