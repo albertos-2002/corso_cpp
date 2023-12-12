@@ -1,0 +1,3 @@
+g++ -Wall class_event.cc class_utilities.cc mass.cc read.cc dump.cc class_massmean.cc particleMean_v2.cpp -o particleMean_v2_exe
+
+./particleMean_v2_exe ../particles_events

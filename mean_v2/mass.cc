@@ -1,12 +1,10 @@
-//#include "/content/drive/MyDrive/Università/C++/Esercizi/Particles/mean_v2/header/class_constants.h"
-//#include "/content/drive/MyDrive/Università/C++/Esercizi/Particles/mean_v2/header/class_event.h"
-//#include "/content/drive/MyDrive/Università/C++/Esercizi/Particles/mean_v2/header/class_utilities.h"
+#include "header/class_constants.h"
+#include "header/class_event.h"
+#include "header/class_utilities.h"
 #include <cmath>
-//using namespace std;
+using namespace std;
 
 double mass( const Event& evento_m ) {
-
-//definizione delle variabili (è necessaria la reinizializzazione quindi le manteniamo in scope)
 
   int counter_positive_particles = 0;
   int counter_negative_particles = 0;
@@ -21,10 +19,7 @@ double mass( const Event& evento_m ) {
   double invariantmass_K0 = 0;
   double invariantmass_L0 = 0;
 
-//--------------------------------------------------------------------------------------------------
-
   //loop over Particles
-
   for(int i=0; i< evento_m.nParticles(); ++i) {
 
     if ( evento_m.particles(i) -> electric_field > 0 ){

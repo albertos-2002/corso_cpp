@@ -1,15 +1,12 @@
-
 #include <iostream>
 #include <fstream>
 #include <cmath>
-using namespace std;
 #include "header/class_event.h"
 #include "header/class_constants.h"
 #include "header/class_utilities.h"
-#include "header/dump.h"
-#include "header/read.h"
-#include "header/mass.h"
 #include "header/class_massmean.h"
+#include "header/funzioni.h"
+using namespace std;
 
 
 int main( int terminal_index, char* terminal_string[] ){
@@ -43,14 +40,10 @@ int main( int terminal_index, char* terminal_string[] ){
   cout << "Media        :  " << obj_K0.mMean() << endl;
   cout << "RMS          :  " << obj_K0.mRMS() << endl;
 
-  cout << "eventi scartati:  " << obj_K0.EventiScartati() << endl;
-
   cout << "Ipotesi L0" << endl;
   cout << "Numero eventi:  " << obj_L0.nEvents() << endl;
   cout << "Media        :  " << obj_L0.mMean() << endl;
   cout << "RMS          :  " << obj_L0.mRMS() << endl;
-
-  cout << "eventi scartati:  " << obj_L0.EventiScartati() << endl;
 
   return 0;
 
