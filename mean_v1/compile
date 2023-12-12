@@ -1,0 +1,3 @@
+g++ -Wall particleMean_v1.cpp clear.cc dump.cc read.cc add.cc mass.cc funzioni.cc -o particleMean_v1_exe
+
+./particleMean_v1_exe ../particles_events
