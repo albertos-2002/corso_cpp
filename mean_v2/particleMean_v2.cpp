@@ -12,12 +12,10 @@ using namespace std;
 int main( int terminal_index, char* terminal_string[] ){
 
   ifstream reading_file(terminal_string[1]);
+  if( !reading_file.is_open() ) return 1;     // controllo apertura file
 
   MassMean obj_K0( 0.495 , 0.500 );
   MassMean obj_L0( 1.115 , 1.116 );
-
-
-  if( !reading_file.is_open() ) return 1;     // controllo apertura file
 
   while( !reading_file.eof() ){
 
@@ -46,5 +44,4 @@ int main( int terminal_index, char* terminal_string[] ){
   cout << "RMS          :  " << obj_L0.mRMS() << endl;
 
   return 0;
-
 }
