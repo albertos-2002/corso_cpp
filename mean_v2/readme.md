@@ -49,7 +49,7 @@ Vengono dichiarati come membri `private` quelli precedentemente presenti nella [
 
 Viene aggiunta una variabile di tipo `const static int` per contenere il numero massimi di particelle possibili in un evento (10)
 
-### Costrutture
+### - Costrutture
 
 Argomenti:
 
@@ -65,10 +65,10 @@ ognuno di questi puntatori viene settato a `nullptr`
 
 un numero di puntatori pari al numero di particelle lette viene riassegnato a una `struct Particle` (`new`)
 
-### Distruttore
+### - Distruttore
 Per prima cosa elimina ogni `struct Particle` (`for`) e successivamente elimina l'*array di puntatori*
 
-### Funzione add `void`
+### - Funzione add `void`
 
 Argomenti:
 
@@ -78,22 +78,22 @@ Argomenti:
 
 La funzione di occupa di riempiere la `struct Particle` all indice *index* con gli argomenti passati 
 
-### Funzione eventNumber `int` `const`
+### - Funzione eventNumber `int` `const`
 Restituisce il numero identificativo
 
-### Funzione xdecay `float` `const`
+### - Funzione xdecay `float` `const`
 Restituisce la coordinata x del punto di impatto
 
-### Funzione ydecay `float` `const`
+### - Funzione ydecay `float` `const`
 Restituisce la coordinata y del punto di impatto
 
-### Funzione zdecay `float` `const`
+### - Funzione zdecay `float` `const`
 Restituisce la coordinata z del punto di impatto
 
-### Funzione nParticles `int` `const`
+### - Funzione nParticles `int` `const`
 Restituisce il numero di particelle
 
-### Funzione particles `Particle*` `const`
+### - Funzione particles `Particle*` `const`
 Restituisce il puntatore ad una `struct Particle` se il valore `int` passato come argomento è minore del numero di particelle (`if`) in caso contrario restituisce `nullptr` (`else`)
 
 ## Classe `MassMean` (class_massmean .h .cc)
@@ -110,35 +110,35 @@ Membri dichiarati `private`
 
 Membri dichiarati `public`
 
-### Costruttore
+### - Costruttore
 Argomenti
 
 - `double` minimo e massimo della massa invariante (range di ricerca)
 
 assegna i parametri passati come argomento alle rispettive variabili interne e *setta* le altre a 0
 
-### Distruttore
+### - Distruttore
 (default)
 
-### Funzione add `void`
+### - Funzione add `void`
 
 Come argomento acceta `const Event&`
 
 Chiama la funzione [`mass`](##-Funzione-mass-`double`-(mass.cc)) passandogli l'evento, controlla che il risultato sia interno al range desiderato (`if`) e in caso di esito positivo aggiorna la somma delle masse, la somma dei quadrati delle masse e il contatore degli eventi accettati
 
-### Funzione compute `void`
+### - Funzione compute `void`
 
 La funzione si occupa di calcolare la media delle masse invarianti e il relativo rms 
 
 ([Matematicamente come nel Particle Mean v1](../mean_v1/readme.md))
 
-### Funzione nEvents `int`
+### - Funzione nEvents `int`
 Ritorna il numero di eventi selezionati
 
-### Funzione mMean `double` `const`
+### - Funzione mMean `double` `const`
 Ritorna la media delle masse invarianti
 
-### Funzione mRMS `double` `const`
+### - Funzione mRMS `double` `const`
 Se (`if`) positivo, ristorna il valore di RMS, altrimenti (`else`) ritorna 0
 
 ## Classe `Utilities` (class_utilities .h .cc)
