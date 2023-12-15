@@ -5,11 +5,9 @@ class Utilities{
 
 public:
 
-  static double energia( const float& momento_x, const float& momento_y, const float& momento_z, const double& massa_invariante );  //static function
+  static double energia( const float& momento_x, const float& momento_y, const float& momento_z, const double& massa_invariante ); 
 
-  //definizione della funzione che calcola la massa invariante
-
-  static double massa_invariante( double& momento_x, double& momento_y, double& momento_z, double& energia );  //static function
+  static double massa_invariante( double& momento_x, double& momento_y, double& momento_z, double& energia );  
 
 };
 

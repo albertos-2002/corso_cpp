@@ -1,9 +1,7 @@
 #include <vector>
 #include "header/class_event.h"
-
 using namespace std;
 
-//costruttore
 Event::Event( int id_evento, float impatto_x, float impatto_y, float impatto_z): 
 
   event_id(id_evento),
@@ -11,10 +9,9 @@ Event::Event( int id_evento, float impatto_x, float impatto_y, float impatto_z):
   impact_y(impatto_y),
   impact_z(impatto_z)
   {
-    ptr_partstruct.reserve(10);	    //al puntatore di puntatori alloco la memoria per 10 strutture particle
+    ptr_partstruct.reserve(10);	    
   }
 
-//distruttore
 Event::~Event(){  
 
     for (Particle* c : ptr_partstruct){
@@ -22,14 +19,14 @@ Event::~Event(){
     }
     
     ptr_partstruct.clear();
-    
   }
   
 //funzioni che aggiungono dati -------------------------------------------------------------------
   
-  void Event::add(int campo_elettrico, float momento_x, float momento_y, float momento_z, int& index){
+  void Event::add(int campo_elettrico, float momento_x, float momento_y, float momento_z){
 
-      ptr_partstruct.push_back(new Particle);      
+      ptr_partstruct.push_back(new Particle);
+      int index = ptr_partstruct.size() -1;
       
       ptr_partstruct.at(index) -> electric_field = campo_elettrico;
       ptr_partstruct.at(index) -> momentum_x = momento_x;
@@ -37,7 +34,6 @@ Event::~Event(){
       ptr_partstruct.at(index) -> momentum_z = momento_z;
 
     return;
-
   }
   
 //funzioni che ritornano i dati ------------------------------------------------------------------
@@ -62,7 +58,7 @@ Event::~Event(){
     return ptr_partstruct.size();
   }
 
-  Event::Particle* Event::particles(int indexp) const {
+  Event::Particle* Event::particles(unsigned int indexp) const {
     if(indexp < ptr_partstruct.size()) return ptr_partstruct.at(indexp);
     else return nullptr;
   }

@@ -22,10 +22,8 @@ private:
 
 public:
 
-  //costruttore
   MassMean( double min_mass, double max_mass);           
 
-  //distruttore
   ~MassMean();
 
   void add( const Event& evento_a );

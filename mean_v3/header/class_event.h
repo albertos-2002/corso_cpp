@@ -7,7 +7,7 @@ using namespace std;
 
 class Event {
 
-  private:      //dichiarato on top per poter utilizzare le struct dentro la classe
+  private:      
 
   struct Particle {
 
@@ -28,15 +28,13 @@ class Event {
 
   public:
 
-  //costruttore
   Event( int id_evento, float impatto_x, float impatto_y, float impatto_z); 
 
-  //distruttore
   ~Event();
 
   //funzioni che aggiungono dati -------------------------------------------------------------------
 
-  void add(int campo_elettrico, float momento_x, float momento_y, float momento_z, int& index);
+  void add(int campo_elettrico, float momento_x, float momento_y, float momento_z);
 
   //funzioni che ritornano i dati ------------------------------------------------------------------
 
@@ -50,7 +48,7 @@ class Event {
   
   int nParticles() const;
 
-  Particle* particles(int indexp) const;
+  Particle* particles(unsigned int indexp) const;
 
 };
 
