@@ -10,9 +10,9 @@
 
 - [x] [mean v2](mean_v2/readme.md)
 
-- [ ] [mean v3](mean_v3/readme.md)
+- [x] [mean v3](mean_v3/readme.md)
 
-- [ ] [mean v4](mean_v4/readme.md)
+- [x] [mean v4](mean_v4/readme.md)
 
 - [ ] [hist v1](hist_v1/readme.md)
 

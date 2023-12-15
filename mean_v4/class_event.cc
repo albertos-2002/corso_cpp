@@ -3,7 +3,6 @@
 
 using namespace std;
 
-//costruttore
 Event::Event( int id_evento, double impatto_x, double impatto_y, double impatto_z): 
 
   event_id(id_evento),
@@ -11,18 +10,16 @@ Event::Event( int id_evento, double impatto_x, double impatto_y, double impatto_
   impact_y(impatto_y),
   impact_z(impatto_z)
   {
-    ptr_partstruct.reserve(10);	    //al puntatore di puntatori alloco la memoria per 10 strutture particle
+    ptr_partstruct.reserve(10);	    
   }
 
-//distruttore
 Event::~Event(){  
 
     for (Particle* c : ptr_partstruct){
     delete c;
     }
     
-    ptr_partstruct.clear();
-    
+    ptr_partstruct.clear();  
   }
   
 //funzioni che aggiungono dati -------------------------------------------------------------------
@@ -38,7 +35,6 @@ Event::~Event(){
       ptr_partstruct.at(index) -> momentum_z = momento_z;
 
     return;
-
   }
   
 //funzioni che ritornano i dati ------------------------------------------------------------------
@@ -63,7 +59,7 @@ Event::~Event(){
     return ptr_partstruct.size();
   }
 
-  Event::Particle* Event::particles(int indexp) const {
+  Event::Particle* Event::particles(unsigned int indexp) const {
     if(indexp < ptr_partstruct.size()) return ptr_partstruct.at(indexp);
     else return nullptr;
   }

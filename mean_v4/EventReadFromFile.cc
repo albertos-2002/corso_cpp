@@ -12,8 +12,10 @@ EventReadFromFile::EventReadFromFile( const string& name ) {
   file = new ifstream( name );
 
   //controllo sul file
-  if (file -> is_open()) {cout << "ERFF:file aperto"<< endl;}
-  if (file -> fail()) {cout << "ERFF:qualcosa è fallito" << endl;}
+  //if (file -> is_open()) {cout << "ERFF:file aperto"<< endl;}
+  if (file -> fail()){
+  cout << "ERFF:qualcosa è fallito" << endl;
+  }
   
 }
 
@@ -26,17 +28,6 @@ EventReadFromFile::~EventReadFromFile() {
 // get an event
 const Event* EventReadFromFile::get() {
   return readFile();
-}
-
-const bool EventReadFromFile::file_state(){
-
-  if ( !( file -> eof() ) ) {
-    return true;
-  }
-  else{
-    return false;
-  }
-  
 }
 
 
@@ -62,15 +53,13 @@ const Event* EventReadFromFile::readFile() {
       *file >> momentum_y_r;
       *file >> momentum_z_r;
 
-      ptr_classevent -> add( electric_field_r, momentum_x_r, momentum_y_r, momentum_z_r);
-      
+      ptr_classevent -> add( electric_field_r, momentum_x_r, momentum_y_r, momentum_z_r);     
     }
-
   }
 
-  else return nullptr;
+  else{ 
+    return nullptr;
+  }
 
   return ptr_classevent; 
-
 }
-

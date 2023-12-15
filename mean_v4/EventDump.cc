@@ -35,10 +35,7 @@ void EventDump::process( const Event& event_dump ) {
 
     cout << event_dump.particles(i) -> electric_field << " " ;
     cout << event_dump.particles(i) -> momentum_x << " " << event_dump.particles(i) -> momentum_y << " " <<  event_dump.particles(i) -> momentum_z << endl;
-
    }
-
+   
   return;
-
 }
-

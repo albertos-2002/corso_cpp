@@ -9,16 +9,25 @@ class ParticleMass;
 
 //costruttore
 ParticleMass::ParticleMass(){
+
+  ptr_massmean.reserve(2);
+
 }
 
 //distruttore
 ParticleMass::~ParticleMass(){
+
+  for (auto c : ptr_massmean){
+    delete c;
+  }
+  
+  ptr_massmean.clear();
+
 }
   
 
 void ParticleMass::beginJob(){
-
-  ptr_massmean.reserve(2);
+ 
   //ipotesi lambda
   ptr_massmean.push_back( new MassMean( 1.115 , 1.116 ) );
   //ipotesi k
@@ -46,10 +55,9 @@ void ParticleMass::endJob(){
       cout << "Ipotesi K0" << endl;
       cout << "Numero eventi:  " << ptr_massmean.at(i) -> nEvents() << endl;
       cout << "Media        :  " << ptr_massmean.at(i) -> mMean() << endl;
-      cout << "RMS          :  " << ptr_massmean.at(i) -> mRMS() << endl;
-  
-    }
-  
+      cout << "RMS          :  " << ptr_massmean.at(i) -> mRMS() << endl;  
+    }  
+    
   }
 
   return;
@@ -59,8 +67,7 @@ void ParticleMass::process( const Event& classe_evento ){
 
   for (MassMean* c : ptr_massmean){
   
-    c -> add( classe_evento );  //accessi di tipo puntatore
-  
+    c -> add( classe_evento );    
   }
 
   return;
