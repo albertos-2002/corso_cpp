@@ -1,6 +1,5 @@
 #ifndef ParticleMass_h
 #define ParticleMass_h 
-
 #include <vector>
 #include <iostream>
 #include <string>
@@ -18,8 +17,7 @@ class ParticleMass : public AnalysisSteering {
   
   string str_name;
   MassMean* ptr_massmean;
-  TH1F* ptr_histo;
-  
+  TH1F* ptr_histo;  
   };
   
   vector<Particle_pm*> ptr_particle_pm;  //modificato per contenere puntatori alla struttura particle

@@ -11,12 +11,19 @@ using namespace std;
 
 class ParticleMass;
 
-//costruttore
 ParticleMass::ParticleMass(){
 }
 
-//distruttore
 ParticleMass::~ParticleMass(){
+
+  for (auto c : ptr_particle_pm){
+
+    delete c -> ptr_massmean;
+    delete c -> ptr_histo;
+    delete c;
+    }
+
+  ptr_particle_pm.clear();
 }
   
 
@@ -26,19 +33,18 @@ void ParticleMass::beginJob(){
 
   //ipotesi lambda
   const string nome_1 = "Lambda";
-  ptr_particle_pm.push_back(new Particle_pm);
-  
+  ptr_particle_pm.push_back(new Particle_pm);  
   pCreate( nome_1, 1.115, 1.116);
+  
   //ipotesi k
   const string nome_2 = "K0";
   ptr_particle_pm.push_back(new Particle_pm);
-  
   pCreate( nome_2, 0.495, 0.500);
 
   return;
 }
 
-void ParticleMass::endJob(){  //aggiornata per usare le nuove cose
+void ParticleMass::endJob(){  //aggiornata 
 
   TFile* histo_file = new TFile("histo.root", "RECREATE");
 
@@ -82,10 +88,8 @@ void ParticleMass::process( const Event& classe_evento ){
   
     if ( ptr_particle_pm.at(i) -> ptr_massmean -> add( classe_evento ) ) {
    
-      ptr_particle_pm.at(i) -> ptr_histo -> Fill( mass(classe_evento) );
-    
-    }
-  
+      ptr_particle_pm.at(i) -> ptr_histo -> Fill( mass(classe_evento) );    
+    }  
   }
   
   return;
@@ -93,17 +97,14 @@ void ParticleMass::process( const Event& classe_evento ){
 
 void ParticleMass::pCreate( const string& nome, float minimo, float massimo){
 
-//  TFile* histo_file = new TFile("histo.root", "RECREATE");
-
   int index =  ptr_particle_pm.size()-1;
-  int bin_numb = 10; //da aggiustare per ottenere il ook corretto
+  int bin_numb = 20;
   
   ptr_particle_pm.at(index) -> str_name = nome;
   
   ptr_particle_pm.at(index) -> ptr_massmean = new MassMean(minimo, massimo);
   
   ptr_particle_pm.at(index) -> ptr_histo = new TH1F(nome.c_str(), nome.c_str(), bin_numb, minimo, massimo);
-
 
   return;
 }

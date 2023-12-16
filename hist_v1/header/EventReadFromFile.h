@@ -20,12 +20,10 @@ class EventReadFromFile: public EventSource {
 
   ~EventReadFromFile() override;
 
-  const bool file_state();
-
-  // read and event  //spostata a public
-  const Event* readFile();
-
  private:
+
+  // read and event  
+  const Event* readFile();
 
   // get an event
   const Event* get() override;
@@ -47,4 +45,3 @@ class EventReadFromFile: public EventSource {
 };
 
 #endif
-

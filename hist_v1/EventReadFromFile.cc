@@ -1,10 +1,8 @@
 #include "header/EventReadFromFile.h"
 #include "header/class_event.h"
-
 #include <iostream>
 #include <fstream>
 #include <string>
-
 using namespace std;
 
 // read data from file "name"
@@ -28,18 +26,6 @@ const Event* EventReadFromFile::get() {
   return readFile();
 }
 
-const bool EventReadFromFile::file_state(){
-
-  if ( !( file -> eof() ) ) {
-    return true;
-  }
-  else{
-    return false;
-  }
-  
-}
-
-
 // read an event (ex funzione read.h)
 const Event* EventReadFromFile::readFile() {
   
@@ -62,15 +48,13 @@ const Event* EventReadFromFile::readFile() {
       *file >> momentum_y_r;
       *file >> momentum_z_r;
 
-      ptr_classevent -> add( electric_field_r, momentum_x_r, momentum_y_r, momentum_z_r);
-      
+      ptr_classevent -> add( electric_field_r, momentum_x_r, momentum_y_r, momentum_z_r);      
     }
-
   }
 
-  else return nullptr;
-
+  else{
+    return nullptr;
+  }
+  
   return ptr_classevent; 
-
 }
-

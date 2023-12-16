@@ -1,7 +1,6 @@
 #include "header/EventDump.h"
 #include "header/class_event.h"
 #include <iostream>
-
 using namespace std;
 
 EventDump::EventDump() {
@@ -35,10 +34,7 @@ void EventDump::process( const Event& event_dump ) {
 
     cout << event_dump.particles(i) -> electric_field << " " ;
     cout << event_dump.particles(i) -> momentum_x << " " << event_dump.particles(i) -> momentum_y << " " <<  event_dump.particles(i) -> momentum_z << endl;
-
    }
 
   return;
-
 }
-

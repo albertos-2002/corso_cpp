@@ -12,40 +12,24 @@
 #include "header/class_massmean.h"
 #include "header/class_utilities.h"
 #include "header/funzioni.h"
-
 using namespace std;
 
 int main ( int terminal_index, char* terminal_string[] ) {
 
   string process_decider = terminal_string[1];
   
-  ParticleMass* ptr_partmass = new ParticleMass();
+  //puntatore ai derivati di EventSource
+  EventSource* ptr_eventsource_derived;
   
+//controllo su input / sim ---------------------------------------------------------------------------
+
   if( process_decider == "input" ){
   
     string filename_str = terminal_string[2];
     
-    EventReadFromFile* ptr_eventreadfromfile = new EventReadFromFile(filename_str);        
+    //puntatore alla classe che si occupa di leggere il file
+    ptr_eventsource_derived = new EventReadFromFile(filename_str);
 
-    //creazione degli oggetti massmean
-    
-    ptr_partmass -> beginJob();
-
-    //loop su tutti gli eventi
-    
-    while( ptr_eventreadfromfile -> file_state() ){ 
-
-    const Event* eventclass_ptr = ptr_eventreadfromfile -> readFile(); 
-
-    ptr_partmass -> process(*eventclass_ptr); //dereferencing
-
-    }
-    
-    ptr_partmass -> endJob();
-    
-    delete ptr_partmass;
-    delete ptr_eventreadfromfile;    
-  
   }
   else if( process_decider == "sim" ){
   
@@ -55,32 +39,51 @@ int main ( int terminal_index, char* terminal_string[] ) {
     unsigned int numeroeventi_numb = stoul(numeroeventi_str);
     unsigned int seednumber_numb = stoul(seednumber_str);
     
-    EventSim* eventi_simulati = new EventSim( numeroeventi_numb, seednumber_numb);
+    //puntatore alla classe che si occupa di simulazre gli eventi
+    ptr_eventsource_derived = new EventSim( numeroeventi_numb, seednumber_numb);  
     
-    const Event* eventclass_simulazione;
-    
-    //creazione degli oggetti massmean
-    ptr_partmass -> beginJob();
-    
-     while ( ( eventclass_simulazione = eventi_simulati->get() ) != nullptr ) {
-  
-    ptr_partmass -> process(*eventclass_simulazione); //dereferencing
-    
-    }
-    
-    ptr_partmass -> endJob();
-
-    delete eventi_simulati;
-    delete ptr_partmass;
-  
   }
   else{
-  
     cout << "keyword invalida" << endl;
     return -1;
-  
   }
+  
+//------------------------------------------------------------------------------------------------------
+  
+  //contenitore di puntatori agli analizzatori
+  vector<AnalysisSteering*> aList;
+  aList.push_back(new ParticleMass());  //creazione analizzatore di tipo ParticleMass
+  aList.push_back(new EventDump());     //creazione analizzatore di tipo dump 
+  
+//inizzializzazione degli analizzatori------------------------------------------------------
+  for (auto c : aList){
+    c -> beginJob();
+  }
+  
+  //puntatore alla classe event
+  const Event* eventclass_ptr;
+  
+//loop su tutti gli eventi -----------------------------------------------------------------
+  while( ( eventclass_ptr = ptr_eventsource_derived -> get() ) != nullptr ){ 
+
+    //chiamata alla funzione "analizzatrice" degli analizzatori
+    for (auto c : aList){
+      c -> process(*eventclass_ptr);
+    }
+  }
+  
+  
+//calcolo e print dei risultati ------------------------------------------------------------
+  for (auto c : aList){
+    c -> endJob();
+  }
+  
+//deallocazione della memoria --------------------------------------------------------------
+  delete ptr_eventsource_derived;
+  for (auto c : aList){
+    delete c; 
+  }
+  aList.clear();
 
   return 0;
-
 }

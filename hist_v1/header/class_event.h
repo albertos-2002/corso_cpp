@@ -7,7 +7,7 @@ using namespace std;
 
 class Event {
 
-  private:      //dichiarato on top per poter utilizzare le struct dentro la classe
+  private: 
 
   struct Particle {
 
@@ -28,10 +28,8 @@ class Event {
 
   public:
 
-  //costruttore
   Event( int id_evento, double impatto_x, double impatto_y, double impatto_z); 
 
-  //distruttore
   ~Event();
 
   //funzioni che aggiungono dati -------------------------------------------------------------------
@@ -50,7 +48,7 @@ class Event {
   
   int nParticles() const;
 
-  Particle* particles(int indexp) const;
+  Particle* particles(unsigned int indexp) const;
 
 };
 

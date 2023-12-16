@@ -2,7 +2,6 @@
 #define class_massmean
 
 #include "class_event.h"
-
 using namespace std;
 
 class MassMean {
@@ -22,10 +21,8 @@ private:
 
 public:
 
-  //costruttore
   MassMean( double min_mass, double max_mass);           
 
-  //distruttore
   ~MassMean();
 
   bool add( const Event& evento_a );  //cambiata a bool
