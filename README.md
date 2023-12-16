@@ -14,7 +14,7 @@
 
 - [x] [mean v4](mean_v4/readme.md)
 
-- [ ] [hist v1](hist_v1/readme.md)
+- [x] [hist v1](hist_v1/readme.md)
 
 - [ ] [hist v2](hist_v2/readme.md)
 
