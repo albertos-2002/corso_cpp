@@ -17,13 +17,11 @@ private:
 
 public:
 
-  //costruttore
   LifetimeFit( double min_mass, double max_mass);           
 
-  //distruttore
   ~LifetimeFit();
 
-  bool add( const Event& evento_a );  //cambiata a bool
+  bool add( const Event& evento_a );  
 
   int nEvents();
   

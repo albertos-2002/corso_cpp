@@ -1,11 +1,9 @@
 #include "header/LifetimeFit.h"
 #include "header/class_event.h"
-#include "header/funzioni.h"
 #include "header/ParticleReco.h"
 #include <cmath>
 using namespace std;
 
-  //costruttore
   LifetimeFit::LifetimeFit( double min_mass, double max_mass):    
 
   min_invariant_mass(min_mass),
@@ -13,11 +11,10 @@ using namespace std;
   {
     selected_events = 0;
   }
-
-  //distruttore
+  
   LifetimeFit::~LifetimeFit(){  }                  
 
-  bool LifetimeFit::add( const Event& evento_a ){  //modifiche a bool
+  bool LifetimeFit::add( const Event& evento_a ){  
 
     //creazione istanza a particle reco, svolgimento della ex funzione mass e estrazione della massa invariante
     ParticleReco* ptr_particlereco = new ParticleReco();

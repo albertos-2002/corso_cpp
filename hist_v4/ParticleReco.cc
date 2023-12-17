@@ -2,20 +2,17 @@
 #include "header/class_event.h"
 #include "header/class_constants.h"
 #include "header/class_utilities.h"
-
 #include <cmath>
 #include <vector>
 using namespace std;
 
-ParticleReco::ParticleReco(){
+ParticleReco::ParticleReco(): Singleton<Event>(), LazyObserver<Event>(){
 }
 
 ParticleReco::~ParticleReco(){
 }
 
 void ParticleReco::update( const Event& evento_m ){
-
-//definizione delle variabili (è necessaria la reinizializzazione quindi le manteniamo in scope)
 
   int counter_positive_particles = 0;
   int counter_negative_particles = 0;
@@ -31,6 +28,10 @@ void ParticleReco::update( const Event& evento_m ){
   double invariantmass_L0 = 0;
 
 //--------------------------------------------------------------------------------------------------
+
+//LazyObserver<Event>::check();
+
+//----------------------------------
 
   //loop over Particles
 
@@ -62,7 +63,7 @@ void ParticleReco::update( const Event& evento_m ){
 
   }
 
-  if ( counter_positive_particles != 1 && counter_negative_particles != 1 ) return;
+  if ( counter_positive_particles != 1 || counter_negative_particles != 1 ) return;
 
   invariantmass_K0 = Utilities::massa_invariante( sum_momentum_x, sum_momentum_y, sum_momentum_z, sum_energy_K0 );
   invariantmass_L0 = Utilities::massa_invariante( sum_momentum_x, sum_momentum_y, sum_momentum_z, sum_energy_L0 );

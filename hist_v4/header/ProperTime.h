@@ -6,7 +6,7 @@
 #include "class_event.h"
 #include "ParticleReco.h"
 
-class ProperTime /*: public Singleton<Event> , public LazyObserver<Event>*/ {
+class ProperTime : public Singleton<Event> , public LazyObserver<Event> {
 
   private:
   
@@ -17,7 +17,6 @@ class ProperTime /*: public Singleton<Event> , public LazyObserver<Event>*/ {
   
   double total_energy;
   double invariant_mass;
-  
   double time;
   
   ParticleReco* ptr_particlereco_internal;
@@ -27,7 +26,7 @@ class ProperTime /*: public Singleton<Event> , public LazyObserver<Event>*/ {
   ProperTime(const Event& evento_m);
   ~ProperTime();
   
-  void update();
+  void update(const Event& evento_m);
   
   decay_type tipologia_decadimento;
   

@@ -6,7 +6,6 @@
 #include "header/class_massmean.h"
 #include "header/AnalysisSteering.h"
 #include "header/ParticleMass.h"
-#include "header/funzioni.h"
 #include "header/AnalysisInfo.h"
 #include "header/AnalysisFactory.h"
 #include "ActiveObserver.h"
@@ -15,13 +14,13 @@ using namespace std;
 
 class ParticleMass;
 
-//from braggplotv3
+//from braggplotv3 ------------------------------------------------------------------------------
 
 // concrete factory to create an ElementReco analyzer
 class ParticleMassFactory: public AnalysisFactory::AbsFactory {
  public:
   // assign "plot" as name for this analyzer and factory
-  ParticleMassFactory(): AnalysisFactory::AbsFactory( "plot_mass" ) {}
+  ParticleMassFactory(): AnalysisFactory::AbsFactory( "plotMass" ) {}
   // create an ElementReco when builder is run
   AnalysisSteering* create( const AnalysisInfo* info ) override {
     return new ParticleMass( info );
@@ -33,39 +32,48 @@ class ParticleMassFactory: public AnalysisFactory::AbsFactory {
 // an ElementRecoFactory will be available with name "plot".
 static ParticleMassFactory pm;
 
+//-----------------------------------------------------------------------------------------------
 
-//costruttore
-ParticleMass::ParticleMass(const AnalysisInfo* info_arg):AnalysisSteering(info_arg){
+ParticleMass::ParticleMass(const AnalysisInfo* info_arg):AnalysisSteering(info_arg), ActiveObserver<Event>(){
 }
 
-//distruttore
 ParticleMass::~ParticleMass(){
+
+  for (auto c : ptr_particle_pm){
+
+    delete c -> ptr_massmean;
+    delete c -> ptr_histo;
+    delete c;
+    }
+
+  ptr_particle_pm.clear();
+
 }
   
 
 void ParticleMass::beginJob(){
-
-cout << "chiamata alla ParticleMass" << endl;
 
   ptr_particle_pm.reserve(2);
 
   //ipotesi lambda
   const string nome_1 = "Lambda";
   ptr_particle_pm.push_back(new Particle_pm);
-  
   pCreate( nome_1, 1.115, 1.116);
-  //ipotesi k
+  
+  //ipotesi k0
   const string nome_2 = "K0";
   ptr_particle_pm.push_back(new Particle_pm);
-  
   pCreate( nome_2, 0.495, 0.500);
 
   return;
 }
 
-void ParticleMass::endJob(){  //aggiornata per usare le nuove cose
+void ParticleMass::endJob(){  
 
-  TFile* histo_file = new TFile("histo.root", "RECREATE");
+  //estrazione del nome dalla riga di comando
+  string nome_file_root = AnalysisSteering::aInfo->value("plotMass");
+
+  TFile* histo_file = new TFile( nome_file_root.c_str() , "RECREATE");
 
 //  if (histo_file -> IsOpen()) { cout << "File aperto correttamente" << endl; }
 
@@ -80,8 +88,7 @@ void ParticleMass::endJob(){  //aggiornata per usare le nuove cose
       cout << "Media        :  " << ptr_particle_pm.at(i) -> ptr_massmean -> mMean() << endl;
       cout << "RMS          :  " << ptr_particle_pm.at(i) -> ptr_massmean -> mRMS() << endl;
     
-      ptr_particle_pm.at(i) -> ptr_histo -> Write();
-      
+      ptr_particle_pm.at(i) -> ptr_histo -> Write();      
     }
     else{
   
@@ -90,10 +97,8 @@ void ParticleMass::endJob(){  //aggiornata per usare le nuove cose
       cout << "Media        :  " << ptr_particle_pm.at(i) -> ptr_massmean -> mMean() << endl;
       cout << "RMS          :  " << ptr_particle_pm.at(i) -> ptr_massmean -> mRMS() << endl;
   
-      ptr_particle_pm.at(i) -> ptr_histo -> Write();
-      
-    }
-  
+      ptr_particle_pm.at(i) -> ptr_histo -> Write(); 
+    }  
   }
 
   histo_file -> Close();
@@ -114,8 +119,7 @@ void ParticleMass::update( const Event& classe_evento ){
       ptr_particle_pm.at(i) -> ptr_histo -> Fill( ptr_particlereco -> get_invariantmass() );
     
       delete ptr_particlereco;
-    }
-  
+    }  
   }
   
   return;
@@ -126,7 +130,7 @@ void ParticleMass::pCreate( const string& nome, float minimo, float massimo){
 //  TFile* histo_file = new TFile("histo.root", "RECREATE");
 
   int index =  ptr_particle_pm.size()-1;
-  int bin_numb = 10; //da aggiustare per ottenere il ook corretto
+  int bin_numb = 20; 
   
   ptr_particle_pm.at(index) -> str_name = nome;
   

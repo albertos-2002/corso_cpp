@@ -29,4 +29,3 @@ class EventDump: public AnalysisSteering, public ActiveObserver<Event> {
 };
 
 #endif
-

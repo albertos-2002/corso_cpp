@@ -17,7 +17,7 @@ class ParticleLifetime : public AnalysisSteering, public ActiveObserver<Event> {
 
   private:
   
-  struct Particle_pm {  //aggiunta della struttura
+  struct Particle_pm { 
   
   string str_name;
   LifetimeFit* ptr_lifetime;
@@ -25,7 +25,7 @@ class ParticleLifetime : public AnalysisSteering, public ActiveObserver<Event> {
   
   };
   
-  vector<Particle_pm*> ptr_particle_lt;  //modificato per contenere puntatori alla struttura particle
+  vector<Particle_pm*> ptr_particle_lt;  
   
   public:
 

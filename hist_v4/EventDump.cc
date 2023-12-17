@@ -4,10 +4,9 @@
 #include "header/AnalysisFactory.h"
 #include "ActiveObserver.h"
 #include <iostream>
-
 using namespace std;
 
-//from eventdump of bragplotv3
+//from eventdump of bragplotv3 --------------------------------------------------------------------
 
 // concrete factory to create an EventDump analyzer
 class EventDumpFactory: public AnalysisFactory::AbsFactory {
@@ -26,8 +25,9 @@ class EventDumpFactory: public AnalysisFactory::AbsFactory {
 // an EventDumpFactory will be available with name "dump".
 static EventDumpFactory ed;
 
+//-------------------------------------------------------------------------------------------------
 
-EventDump::EventDump(const AnalysisInfo* info_arg): AnalysisSteering(info_arg){
+EventDump::EventDump(const AnalysisInfo* info_arg): AnalysisSteering(info_arg), ActiveObserver<Event>(){
 }
 
 
@@ -58,10 +58,7 @@ void EventDump::update( const Event& event_dump ) {
 
     cout << event_dump.particles(i) -> electric_field << " " ;
     cout << event_dump.particles(i) -> momentum_x << " " << event_dump.particles(i) -> momentum_y << " " <<  event_dump.particles(i) -> momentum_z << endl;
-
    }
 
   return;
-
 }
-

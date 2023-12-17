@@ -19,66 +19,35 @@ int main ( int terminal_index, char* terminal_string[] ) {
 
   AnalysisInfo* ptr_analysisinfo = new AnalysisInfo( terminal_index, terminal_string );
   
-  EventSource* ptr_eventsource = SourceFactory::create( ptr_analysisinfo );
+  //puntatore ai derivati di EventSource
+  EventSource* ptr_eventsource_derived = SourceFactory::create(ptr_analysisinfo);
   
-  // create a list of analyzers
-  cout << "chiamata alla funzione create di analysisfactory" << endl;
+//------------------------------------------------------------------------------------------------------
+  
+  //contenitore di puntatori agli analizzatori
   vector<AnalysisSteering*> aList = AnalysisFactory::create( ptr_analysisinfo );
 
-  // initialize all analyzers
-  
-  cout << "M: chiamata alla funzione beginjob" << endl;
-  for ( auto as: aList ) as->beginJob();
-
-  ptr_eventsource -> run();
-
-  // finalize all analyzers
-  for ( auto as: aList ) {
-    as->endJob();
-    delete as;
+//inizzializzazione degli analizzatori------------------------------------------------------
+  for (auto c : aList){
+    c -> beginJob();
   }
 
-  delete ptr_eventsource;
+//inizzializzazione degli analizzatori------------------------------------------------------
+  ptr_eventsource_derived -> run();
 
-  return 0;
-
-}
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-/*
-  ParticleMass* ptr_partmass = new ParticleMass();
-
-
-  //creazione degli oggetti massmean  
-  ptr_partmass -> beginJob();
-
-  //loop su tutti gli eventi
-  const Event* eventclass_ptr;
-  while( ( eventclass_ptr = ptr_eventsource -> get() ) != nullptr ){ 
-
-  ptr_partmass -> process(*eventclass_ptr); //dereferencing
-
+//calcolo e print dei risultati ------------------------------------------------------------
+  for (auto c : aList){
+    c -> endJob();
   }
-    
-  ptr_partmass -> endJob();
-    
-  delete ptr_partmass;
-  delete ptr_eventsource;
+
+//deallocazione della memoria --------------------------------------------------------------
+  for (auto c : aList){
+    delete c; 
+  }
+  aList.clear();
+
+  delete ptr_eventsource_derived; 
   delete ptr_analysisinfo;
 
-
-  
   return 0;
 }
-*/

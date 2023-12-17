@@ -1,11 +1,9 @@
 #include "header/class_massmean.h"
 #include "header/class_event.h"
-#include "header/funzioni.h"
 #include "header/ParticleReco.h"
 #include <cmath>
 using namespace std;
 
-  //costruttore
   MassMean::MassMean( double min_mass, double max_mass):    
 
   min_invariant_mass(min_mass),
@@ -19,12 +17,11 @@ using namespace std;
     massa_tmp = 0;
   }
 
-  //distruttore
   MassMean::~MassMean(){  }                  
 
-  bool MassMean::add( const Event& evento_a ){  //modifiche a bool
+  bool MassMean::add( const Event& evento_a ){  
 
-    //creazione istanza a particle reco, svolgimento della ex funzione mass e estrazione della massa invariante
+    //creazione istanza a particle reco, svolgimento della ex funzione mass ed estrazione della massa invariante
     ParticleReco* ptr_particlereco = new ParticleReco();
     ptr_particlereco -> update( evento_a );
     massa_tmp = ptr_particlereco -> get_invariantmass();
@@ -51,7 +48,6 @@ using namespace std;
     rms = sqrt( (sqr_sum_masses / selected_events) - (mean*mean) ) ;
 
     return;
-
   }
 
   int MassMean::nEvents(){

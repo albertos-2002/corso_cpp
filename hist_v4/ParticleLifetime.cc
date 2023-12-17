@@ -6,7 +6,6 @@
 #include "header/LifetimeFit.h"
 #include "header/AnalysisSteering.h"
 #include "header/ParticleLifetime.h"
-#include "header/funzioni.h"
 #include "header/AnalysisInfo.h"
 #include "header/AnalysisFactory.h"
 #include "ActiveObserver.h"
@@ -25,7 +24,7 @@ class ParticleLifetime;
 class ParticleLifetimeFactory: public AnalysisFactory::AbsFactory {
  public:
   // assign "plot" as name for this analyzer and factory
-  ParticleLifetimeFactory(): AnalysisFactory::AbsFactory( "plot_time" ) {}
+  ParticleLifetimeFactory(): AnalysisFactory::AbsFactory( "plotTime" ) {}
   // create an ElementReco when builder is run
   AnalysisSteering* create( const AnalysisInfo* info ) override {
     return new ParticleLifetime( info );
@@ -38,19 +37,14 @@ class ParticleLifetimeFactory: public AnalysisFactory::AbsFactory {
 static ParticleLifetimeFactory pl;
 //-----------------------------------------------------------------------------------------------------------------------------
 
-
-//costruttore
-ParticleLifetime::ParticleLifetime(const AnalysisInfo* info_arg):AnalysisSteering(info_arg){
+ParticleLifetime::ParticleLifetime(const AnalysisInfo* info_arg):AnalysisSteering(info_arg), ActiveObserver<Event>(){
 }
 
-//distruttore
 ParticleLifetime::~ParticleLifetime(){
 }
   
 
 void ParticleLifetime::beginJob(){
-
-cout << "beginjob della ParticleLifetime" << endl;
 
   ptr_particle_lt.reserve(2);
 
@@ -68,9 +62,12 @@ cout << "beginjob della ParticleLifetime" << endl;
   return;
 }
 
-void ParticleLifetime::endJob(){  //aggiornata per usare le nuove cose
+void ParticleLifetime::endJob(){  
 
-  TFile* histo_file = new TFile("histo2.root", "RECREATE");
+  //estrazione del nome dalla riga di comando
+  string nome_file_root = AnalysisSteering::aInfo->value("plotTime");
+
+  TFile* histo_file = new TFile( nome_file_root.c_str() , "RECREATE");
 
 //  if (histo_file -> IsOpen()) { cout << "File aperto correttamente" << endl; }
 
@@ -91,10 +88,8 @@ void ParticleLifetime::endJob(){  //aggiornata per usare le nuove cose
       cout << "Ipotesi K0" << endl;
       cout << "Numero eventi:  " << ptr_particle_lt.at(i) -> ptr_lifetime -> nEvents() << endl;
   
-      ptr_particle_lt.at(i) -> ptr_histo -> Write();
-      
-    }
-  
+      ptr_particle_lt.at(i) -> ptr_histo -> Write(); 
+    }  
   }
 
   histo_file -> Close();
@@ -108,10 +103,9 @@ void ParticleLifetime::update( const Event& classe_evento ){
   
     if ( ptr_particle_lt.at(i) -> ptr_lifetime -> add( classe_evento ) ) {
    
-      //creazione istanza a particle reco, svolgimento della ex funzione mass e estrazione della massa invariante
-
+      //creazione istanza a particle reco, svolgimento della ex funzione mass e estrazione del tempo proprio
       ProperTime* ptr_propertime = new ProperTime( classe_evento );
-      ptr_propertime -> update();
+      ptr_propertime -> update(classe_evento);
    
       ptr_particle_lt.at(i) -> ptr_histo -> Fill( ptr_propertime -> decayTime() );
     
@@ -128,7 +122,7 @@ void ParticleLifetime::pCreate( const string& nome, float minimo, float massimo,
 //  TFile* histo_file = new TFile("histo.root", "RECREATE");
 
   int index =  ptr_particle_lt.size()-1;
-  int bin_numb = 10; //da aggiustare per ottenere il ook corretto
+  int bin_numb = 20;
   
   ptr_particle_lt.at(index) -> str_name = nome;
   
