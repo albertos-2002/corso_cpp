@@ -4,7 +4,6 @@
 #include <cmath>
 using namespace std;
 
-  //costruttore
   MassMean::MassMean( double min_mass, double max_mass):    
 
   min_invariant_mass(min_mass),
@@ -18,10 +17,9 @@ using namespace std;
     massa_tmp = 0;
   }
 
-  //distruttore
   MassMean::~MassMean(){  }                  
 
-  bool MassMean::add( const Event& evento_a ){  //modifiche a bool
+  bool MassMean::add( const Event& evento_a ){  
 
     massa_tmp = mass( evento_a );
 
@@ -45,7 +43,6 @@ using namespace std;
     rms = sqrt( (sqr_sum_masses / selected_events) - (mean*mean) ) ;
 
     return;
-
   }
 
   int MassMean::nEvents(){

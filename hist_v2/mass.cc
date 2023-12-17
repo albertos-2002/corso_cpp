@@ -1,14 +1,11 @@
 #include "header/class_constants.h"
 #include "header/class_utilities.h"
 #include "header/class_event.h"
-
 #include <cmath>
 #include <vector>
 using namespace std;
 
 double mass( const Event& evento_m ) {
-
-//definizione delle variabili (è necessaria la reinizializzazione quindi le manteniamo in scope)
 
   int counter_positive_particles = 0;
   int counter_negative_particles = 0;

@@ -1,42 +1,58 @@
-#include <string>
 #include <iostream>
-#include <fstream>
+#include <vector>
 #include "header/ParticleMass.h"
 #include "header/EventSource.h"
+#include "header/EventDump.h" 
 #include "header/class_event.h"
-#include "header/class_massmean.h"
 #include "header/AnalysisInfo.h"
 #include "header/SourceFactory.h"
-
 using namespace std;
 
 int main ( int terminal_index, char* terminal_string[] ) {
 
-  AnalysisInfo* ptr_analysisinfo = new AnalysisInfo( terminal_index, terminal_string );
+  AnalysisInfo* ptr_analysisinfo = new AnalysisInfo(terminal_index, terminal_string);
   
-  EventSource* ptr_eventsource = SourceFactory::create( ptr_analysisinfo );
+  //puntatore ai derivati di EventSource
+  EventSource* ptr_eventsource_derived = SourceFactory::create(ptr_analysisinfo);
   
-  ParticleMass* ptr_partmass = new ParticleMass();
-
-
-  //creazione degli oggetti massmean  
-  ptr_partmass -> beginJob();
-
-  //loop su tutti gli eventi
-  const Event* eventclass_ptr;
-  while( ( eventclass_ptr = ptr_eventsource -> get() ) != nullptr ){ 
-
-  ptr_partmass -> process(*eventclass_ptr); //dereferencing
-
+//------------------------------------------------------------------------------------------------------
+  
+  //contenitore di puntatori agli analizzatori
+  vector<AnalysisSteering*> aList;
+  aList.push_back(new ParticleMass());  //creazione analizzatore di tipo ParticleMass
+  aList.push_back(new EventDump());     //creazione analizzatore di tipo dump 
+  
+//inizzializzazione degli analizzatori------------------------------------------------------
+  for (auto c : aList){
+    c -> beginJob();
   }
-    
-  ptr_partmass -> endJob();
-    
-  delete ptr_partmass;
-  delete ptr_eventsource;
+  
+  //puntatore alla classe event
+  const Event* eventclass_ptr;
+  
+//loop su tutti gli eventi -----------------------------------------------------------------
+  while( ( eventclass_ptr = ptr_eventsource_derived -> get() ) != nullptr ){ 
+
+    //chiamata alla funzione "analizzatrice" degli analizzatori
+    for (auto c : aList){
+      c -> process(*eventclass_ptr);
+    }
+  }
+  
+  
+//calcolo e print dei risultati ------------------------------------------------------------
+  for (auto c : aList){
+    c -> endJob();
+  }
+  
+//deallocazione della memoria --------------------------------------------------------------
+  for (auto c : aList){
+    delete c; 
+  }
+  aList.clear();
+
+  delete ptr_eventsource_derived; 
   delete ptr_analysisinfo;
 
-
-  
   return 0;
 }

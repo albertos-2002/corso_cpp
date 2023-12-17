@@ -11,12 +11,20 @@ using namespace std;
 
 class ParticleMass;
 
-//costruttore
 ParticleMass::ParticleMass(){
 }
 
-//distruttore
 ParticleMass::~ParticleMass(){
+
+  for (auto c : ptr_particle_pm){
+
+    delete c -> ptr_massmean;
+    delete c -> ptr_histo;
+    delete c;
+    }
+
+  ptr_particle_pm.clear();
+
 }
   
 
@@ -38,7 +46,7 @@ void ParticleMass::beginJob(){
   return;
 }
 
-void ParticleMass::endJob(){  //aggiornata per usare le nuove cose
+void ParticleMass::endJob(){  
 
   TFile* histo_file = new TFile("histo.root", "RECREATE");
 
@@ -65,10 +73,9 @@ void ParticleMass::endJob(){  //aggiornata per usare le nuove cose
       cout << "Media        :  " << ptr_particle_pm.at(i) -> ptr_massmean -> mMean() << endl;
       cout << "RMS          :  " << ptr_particle_pm.at(i) -> ptr_massmean -> mRMS() << endl;
   
-      ptr_particle_pm.at(i) -> ptr_histo -> Write();
-      
+      ptr_particle_pm.at(i) -> ptr_histo -> Write();      
     }
-  
+    
   }
 
   histo_file -> Close();
@@ -82,10 +89,8 @@ void ParticleMass::process( const Event& classe_evento ){
   
     if ( ptr_particle_pm.at(i) -> ptr_massmean -> add( classe_evento ) ) {
    
-      ptr_particle_pm.at(i) -> ptr_histo -> Fill( mass(classe_evento) );
-    
-    }
-  
+      ptr_particle_pm.at(i) -> ptr_histo -> Fill( mass(classe_evento) );    
+    }  
   }
   
   return;
@@ -96,7 +101,7 @@ void ParticleMass::pCreate( const string& nome, float minimo, float massimo){
 //  TFile* histo_file = new TFile("histo.root", "RECREATE");
 
   int index =  ptr_particle_pm.size()-1;
-  int bin_numb = 10; //da aggiustare per ottenere il ook corretto
+  int bin_numb = 20; 
   
   ptr_particle_pm.at(index) -> str_name = nome;
   
