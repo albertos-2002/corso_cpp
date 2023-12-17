@@ -22,8 +22,9 @@ using namespace std;
   bool MassMean::add( const Event& evento_a ){  
 
     //creazione istanza a particle reco, svolgimento della ex funzione mass ed estrazione della massa invariante
-    ParticleReco* ptr_particlereco = new ParticleReco();
+    static ParticleReco* ptr_particlereco = ParticleReco::instance();
     ptr_particlereco -> update( evento_a );
+    
     massa_tmp = ptr_particlereco -> get_invariantmass();
     
     if ( massa_tmp <= max_invariant_mass && massa_tmp >= min_invariant_mass ) {
@@ -32,11 +33,9 @@ using namespace std;
       sqr_sum_masses += (massa_tmp*massa_tmp) ;
       selected_events++ ;
       
-      delete ptr_particlereco;
       return true;
     }
     else{
-      delete ptr_particlereco;
       return false;
     }
 

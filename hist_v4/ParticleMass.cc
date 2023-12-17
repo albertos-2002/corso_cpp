@@ -113,12 +113,10 @@ void ParticleMass::update( const Event& classe_evento ){
     if ( ptr_particle_pm.at(i) -> ptr_massmean -> add( classe_evento ) ) {
    
       //creazione istanza a particle reco, svolgimento della ex funzione mass e estrazione della massa invariante
-      ParticleReco* ptr_particlereco = new ParticleReco();
+      static ParticleReco* ptr_particlereco = ParticleReco::instance();
       ptr_particlereco -> update( classe_evento );
    
       ptr_particle_pm.at(i) -> ptr_histo -> Fill( ptr_particlereco -> get_invariantmass() );
-    
-      delete ptr_particlereco;
     }  
   }
   

@@ -5,26 +5,22 @@
 #include "header/ParticleReco.h"
 #include "LazyObserver.h"
 #include "Singleton.h"
-
 #include <cmath>
 #include <vector>
 using namespace std;
 
-ProperTime::ProperTime(const Event& evento_m) : Singleton<Event>(), LazyObserver<Event>() {
-   ptr_particlereco_internal = new ParticleReco(); //ParticleReco è la ex funzione mass
-   ptr_particlereco_internal -> update( evento_m );
+class ParticleReco;
 
+ProperTime::ProperTime(const Event& evento_m) : Singleton<ParticleReco>(), LazyObserver<Event>() {
 }
 
 ProperTime::~ProperTime(){
-  delete ptr_particlereco_internal;
 }
 
 void ProperTime::update(const Event& evento_m){
 
-//-------------------------------
-
-//LazyObserver<Event>::check();
+   static ParticleReco* ptr_particlereco_internal = ParticleReco::instance(); //ParticleReco è la ex funzione mass
+   ptr_particlereco_internal -> update( evento_m );
 
 //-------------------------------
 

@@ -6,7 +6,7 @@
 #include <vector>
 using namespace std;
 
-ParticleReco::ParticleReco(): Singleton<Event>(), LazyObserver<Event>(){
+ParticleReco::ParticleReco(): Singleton<ParticleReco>(), LazyObserver<Event>(){
 }
 
 ParticleReco::~ParticleReco(){
@@ -28,10 +28,6 @@ void ParticleReco::update( const Event& evento_m ){
   double invariantmass_L0 = 0;
 
 //--------------------------------------------------------------------------------------------------
-
-//LazyObserver<Event>::check();
-
-//----------------------------------
 
   //loop over Particles
 
@@ -84,6 +80,7 @@ void ParticleReco::update( const Event& evento_m ){
 
   distance = sqrt( pow( (evento_m.xdecay()) ,2) + pow( (evento_m.ydecay()) ,2) + pow( (evento_m.zdecay()) ,2) );
 
+  return;
 }
 
 double ParticleReco::get_invariantmass(){

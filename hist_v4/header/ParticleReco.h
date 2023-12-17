@@ -5,7 +5,9 @@
 #include "LazyObserver.h"
 #include "class_event.h"
 
-class ParticleReco : public Singleton<Event> , public LazyObserver<Event> {
+class ParticleReco : public Singleton<ParticleReco> , public LazyObserver<Event> {
+
+//friend class Singleton<ParticleReco>;
 
   private:
   
@@ -21,9 +23,9 @@ class ParticleReco : public Singleton<Event> , public LazyObserver<Event> {
   public:
   
   ParticleReco();
-  ~ParticleReco();
+  ~ParticleReco() override;
   
-  void update( const Event& evento_m );
+  void update( const Event& evento_m ) override;
   
   decay_type tipologia_decadimento;
   
