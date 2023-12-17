@@ -2,10 +2,10 @@ g++ -Wall $(root-config --cflags --libs) particleHist_v3.cpp AnalysisFactory.cc 
 
 esecuzione: 
 
-./particleHist_v3_exe plot input ../particles_events
+./particleHist_v3_exe plot histo.root input ../particles_events
 ./particleHist_v3_exe dump input ../particles_events
-./particleHist_v3_exe plot dump input ../particles_events
+./particleHist_v3_exe plot histo.root dump input ../particles_events
 
-./particleHist_v3_exe plot sim "numero_eventi" "seed"
+./particleHist_v3_exe plot histo.root sim "numero_eventi" "seed"
 ./particleHist_v3_exe dump sim "numero_eventi" "seed"
-./particleHist_v3_exe plot dump sim "numero_eventi" "seed"
+./particleHist_v3_exe plot histo.root dump sim "numero_eventi" "seed"

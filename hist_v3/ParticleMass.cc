@@ -70,7 +70,10 @@ void ParticleMass::beginJob(){
 
 void ParticleMass::endJob(){  
 
-  TFile* histo_file = new TFile("histo.root", "RECREATE");
+  //estrazione del nome dalla riga di comando
+  string nome_file_root = AnalysisSteering::aInfo->value("plot");
+
+  TFile* histo_file = new TFile( nome_file_root.c_str() , "RECREATE");
 
 //  if (histo_file -> IsOpen()) { cout << "File aperto correttamente" << endl; }
 
@@ -124,7 +127,7 @@ void ParticleMass::pCreate( const string& nome, float minimo, float massimo){
 //  TFile* histo_file = new TFile("histo.root", "RECREATE");
 
   int index =  ptr_particle_pm.size()-1;
-  int bin_numb = 10; //da aggiustare per ottenere il ook corretto
+  int bin_numb = 20; //da aggiustare per ottenere il ook corretto
   
   ptr_particle_pm.at(index) -> str_name = nome;
   

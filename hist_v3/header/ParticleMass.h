@@ -23,7 +23,7 @@ class ParticleMass : public AnalysisSteering {
   
   };
   
-  vector<Particle_pm*> ptr_particle_pm;  
+  vector<Particle_pm*> ptr_particle_pm;
   
   public:
 
