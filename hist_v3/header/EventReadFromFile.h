@@ -2,10 +2,11 @@
 #define EventReadFromFile_h
 
 #include "EventSource.h"
-
 #include <iostream>
 #include <fstream>
 #include <string>
+using namespace std;
+
 class Event;
 
 class EventReadFromFile: public EventSource {
@@ -20,16 +21,13 @@ class EventReadFromFile: public EventSource {
 
   ~EventReadFromFile() override;
 
-  const bool file_state();
+ private:
 
-  // read and event  //spostata a public
+  // read and event  
   const Event* readFile();
 
   // get an event
   const Event* get() override;
-
- private:
-
 
   // input file
   std::ifstream* file;  
@@ -48,4 +46,3 @@ class EventReadFromFile: public EventSource {
 };
 
 #endif
-

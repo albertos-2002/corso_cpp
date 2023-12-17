@@ -3,10 +3,9 @@
 #include "header/AnalysisInfo.h"
 #include "header/AnalysisFactory.h"
 #include <iostream>
-
 using namespace std;
 
-//from eventdump of bragplotv3
+//from eventdump of bragplotv3 --------------------------------------------------------------------------------------------------------
 
 // concrete factory to create an EventDump analyzer
 class EventDumpFactory: public AnalysisFactory::AbsFactory {
@@ -25,6 +24,7 @@ class EventDumpFactory: public AnalysisFactory::AbsFactory {
 // an EventDumpFactory will be available with name "dump".
 static EventDumpFactory ed;
 
+//-------------------------------------------------------------------------------------------------------------------------------------
 
 EventDump::EventDump(const AnalysisInfo* info_arg): AnalysisSteering(info_arg){
 }
@@ -61,6 +61,4 @@ void EventDump::process( const Event& event_dump ) {
    }
 
   return;
-
 }
-

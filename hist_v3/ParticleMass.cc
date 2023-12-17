@@ -13,7 +13,7 @@ using namespace std;
 
 class ParticleMass;
 
-//from braggplotv3
+//from braggplotv3 -------------------------------------------------------------------------------------------------
 
 // concrete factory to create an ElementReco analyzer
 class ParticleMassFactory: public AnalysisFactory::AbsFactory {
@@ -31,13 +31,22 @@ class ParticleMassFactory: public AnalysisFactory::AbsFactory {
 // an ElementRecoFactory will be available with name "plot".
 static ParticleMassFactory pm;
 
+//------------------------------------------------------------------------------------------------------------------
 
-//costruttore
 ParticleMass::ParticleMass(const AnalysisInfo* info_arg):AnalysisSteering(info_arg){
 }
 
-//distruttore
 ParticleMass::~ParticleMass(){
+
+  for (auto c : ptr_particle_pm){
+
+    delete c -> ptr_massmean;
+    delete c -> ptr_histo;
+    delete c;
+    }
+
+  ptr_particle_pm.clear();
+
 }
   
 
@@ -59,7 +68,7 @@ void ParticleMass::beginJob(){
   return;
 }
 
-void ParticleMass::endJob(){  //aggiornata per usare le nuove cose
+void ParticleMass::endJob(){  
 
   TFile* histo_file = new TFile("histo.root", "RECREATE");
 
@@ -104,9 +113,7 @@ void ParticleMass::process( const Event& classe_evento ){
     if ( ptr_particle_pm.at(i) -> ptr_massmean -> add( classe_evento ) ) {
    
       ptr_particle_pm.at(i) -> ptr_histo -> Fill( mass(classe_evento) );
-    
-    }
-  
+    }  
   }
   
   return;

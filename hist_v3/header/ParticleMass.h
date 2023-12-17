@@ -15,7 +15,7 @@ class ParticleMass : public AnalysisSteering {
 
   private:
   
-  struct Particle_pm {  //aggiunta della struttura
+  struct Particle_pm { 
   
   string str_name;
   MassMean* ptr_massmean;
@@ -23,7 +23,7 @@ class ParticleMass : public AnalysisSteering {
   
   };
   
-  vector<Particle_pm*> ptr_particle_pm;  //modificato per contenere puntatori alla struttura particle
+  vector<Particle_pm*> ptr_particle_pm;  
   
   public:
 
