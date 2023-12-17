@@ -53,7 +53,7 @@ double mass( const Event& evento_m ) {
 
   }
 
-  if ( counter_positive_particles != 1 && counter_negative_particles != 1 ) return -1;
+  if ( counter_positive_particles != 1 || counter_negative_particles != 1 ) return -1;
 
   invariantmass_K0 = Utilities::massa_invariante( sum_momentum_x, sum_momentum_y, sum_momentum_z, sum_energy_K0 );
   invariantmass_L0 = Utilities::massa_invariante( sum_momentum_x, sum_momentum_y, sum_momentum_z, sum_energy_L0 );
