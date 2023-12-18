@@ -13,7 +13,8 @@ class ParticleReco : public Singleton<ParticleReco> , public LazyObserver<Event>
   
   enum decay_type{
     lambda,
-    k0
+    k0,
+    default_reset
   };
   
   double total_energy;

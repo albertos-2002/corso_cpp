@@ -26,6 +26,11 @@ void ParticleReco::update( const Event& evento_m ){
 
   double invariantmass_K0 = 0;
   double invariantmass_L0 = 0;
+  
+  total_energy = 0;
+  invariant_mass = 0;
+  distance = 0;
+  tipologia_decadimento = default_reset;
 
 //--------------------------------------------------------------------------------------------------
 
