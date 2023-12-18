@@ -87,6 +87,7 @@ void ParticleMass::endJob(){
       cout << "Numero eventi:  " << ptr_particle_pm.at(i) -> ptr_massmean -> nEvents() << endl;
       cout << "Media        :  " << ptr_particle_pm.at(i) -> ptr_massmean -> mMean() << endl;
       cout << "RMS          :  " << ptr_particle_pm.at(i) -> ptr_massmean -> mRMS() << endl;
+      cout << ptr_particle_pm.at(i) -> ptr_massmean -> discarded_events << endl;
     
       ptr_particle_pm.at(i) -> ptr_histo -> Write();      
     }
@@ -96,6 +97,7 @@ void ParticleMass::endJob(){
       cout << "Numero eventi:  " << ptr_particle_pm.at(i) -> ptr_massmean -> nEvents() << endl;
       cout << "Media        :  " << ptr_particle_pm.at(i) -> ptr_massmean -> mMean() << endl;
       cout << "RMS          :  " << ptr_particle_pm.at(i) -> ptr_massmean -> mRMS() << endl;
+      cout << ptr_particle_pm.at(i) -> ptr_massmean -> discarded_events << endl;
   
       ptr_particle_pm.at(i) -> ptr_histo -> Write(); 
     }  
@@ -108,14 +110,14 @@ void ParticleMass::endJob(){
 
 void ParticleMass::update( const Event& classe_evento ){
 
-  for (unsigned int i = 0; i < ptr_particle_pm.size(); ++i){
-  
-    if ( ptr_particle_pm.at(i) -> ptr_massmean -> add( classe_evento ) ) {
-   
       //creazione istanza a particle reco, svolgimento della ex funzione mass e estrazione della massa invariante
       static ParticleReco* ptr_particlereco = ParticleReco::instance();
       ptr_particlereco -> update( classe_evento );
-   
+
+  for (unsigned int i = 0; i < ptr_particle_pm.size(); ++i){
+  
+    if ( ptr_particle_pm.at(i) -> ptr_massmean -> add( classe_evento ) ) {
+      
       ptr_particle_pm.at(i) -> ptr_histo -> Fill( ptr_particlereco -> get_invariantmass() );
     }  
   }

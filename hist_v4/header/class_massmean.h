@@ -22,6 +22,10 @@ private:
 
 public:
 
+double discarded_events;
+
+
+
   MassMean( double min_mass, double max_mass);           
 
   ~MassMean();

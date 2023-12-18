@@ -15,6 +15,7 @@ using namespace std;
     mean = 0;
     rms = 0;
     massa_tmp = 0;
+    discarded_events = 0;
   }
 
   MassMean::~MassMean(){  }                  
@@ -36,6 +37,7 @@ using namespace std;
       return true;
     }
     else{
+      discarded_events++;
       return false;
     }
 

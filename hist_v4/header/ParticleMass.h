@@ -41,7 +41,7 @@ class ParticleMass : public AnalysisSteering, public ActiveObserver<Event> {
   
   void endJob() override;
   
-  void update( const Event& classe_evento );
+  void update( const Event& classe_evento ) override;
   
   void pCreate( const string& nome, float minimo, float massimo);
 
