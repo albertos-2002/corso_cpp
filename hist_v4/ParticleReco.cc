@@ -84,11 +84,14 @@ void ParticleReco::update( const Event& evento_m ){
 }
 
 double ParticleReco::get_invariantmass(){
+  check();
   return invariant_mass;
 }
 double ParticleReco::get_totalenergy(){
+  check();
   return total_energy;
 }
 double ParticleReco::get_distance(){
+  check();
   return distance;
 }

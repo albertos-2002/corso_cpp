@@ -17,19 +17,18 @@ using namespace std;
   bool LifetimeFit::add( const Event& evento_a ){  
 
     //creazione istanza a particle reco, svolgimento della ex funzione mass e estrazione della massa invariante
-    ParticleReco* ptr_particlereco = new ParticleReco();
-    ptr_particlereco -> update( evento_a );
+   static ParticleReco* ptr_particlereco = ParticleReco::instance();
+   ptr_particlereco -> update( evento_a );
+    
     double massa_tmp;
     massa_tmp = ptr_particlereco -> get_invariantmass();
     
     if ( massa_tmp <= max_invariant_mass && massa_tmp >= min_invariant_mass ) {
       selected_events++ ;
       
-      delete ptr_particlereco;
       return true;
     }
     else{
-      delete ptr_particlereco;
       return false;
     }
 
