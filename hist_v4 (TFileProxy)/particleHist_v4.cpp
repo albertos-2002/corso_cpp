@@ -8,7 +8,12 @@
 #include "header/AnalysisInfo.h"
 #include "header/SourceFactory.h"
 #include "header/AnalysisFactory.h"
+#include "TFileProxy.h"
+
 using namespace std;
+
+//per il file proxy creiamo un oggetto globale
+//TFileProxy* ptr_tfileproxy = new TFileProxy("hist.root", "update");
 
 int main ( int terminal_index, char* terminal_string[] ) {
 

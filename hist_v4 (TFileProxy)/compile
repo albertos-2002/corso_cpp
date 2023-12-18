@@ -1,0 +1,22 @@
+g++ -Wall $(root-config --cflags --libs) -I ../util/include particleHist_v4.cpp ParticleReco.cc AnalysisFactory.cc AnalysisInfo.cc SourceFactory.cc AnalysisSteering.cc class_event.cc class_massmean.cc class_utilities.cc EventDump.cc EventReadFromFile.cc EventSim.cc EventSource.cc ParticleMass.cc LifetimeFit.cc ParticleLifetime.cc ProperTime.cc -o particleHist_v4_exe
+
+
+esecuzione: 
+
+./particleHist_v4_exe plotMass RootFileName histo.root input ../particles_events
+./particleHist_v4_exe plotTime RootFileName histo.root input ../particles_events
+./particleHist_v4_exe dump input ../particles_events
+./particleHist_v4_exe plotMass RootFileName histo.root dump input ../particles_events
+./particleHist_v4_exe plotTime RootFileName histo.root dump input ../particles_events
+
+./particleHist_v4_exe plotMass plotTime RootFileName histo.root input ../particles_events
+./particleHist_v4_exe plotMass plotTime RootFileName histo.root dump input ../particles_events
+
+./particleHist_v4_exe plotMass RootFileName histo_sim.root sim "numero_eventi" "seed"
+./particleHist_v4_exe plotTime RootFileName histo_sim.root sim "numero_eventi" "seed"
+./particleHist_v4_exe dump sim "numero_eventi" "seed"
+./particleHist_v4_exe plotMass RootFileName histo_sim.root dump sim "numero_eventi" "seed"
+./particleHist_v4_exe plotTime RootFileName histo_sim.root dump sim "numero_eventi" "seed"
+
+./particleHist_v4_exe plotMass plotTime RootFileName histo_sim.root sim "numero_eventi" "seed"
+./particleHist_v4_exe plotMass plotTime RootFileName histo_sim.root dump sim "numero_eventi" "seed"
