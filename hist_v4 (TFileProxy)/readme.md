@@ -7,19 +7,29 @@
 
 ## Note generali
 
-plotMass
-dump
-plotTime
+È stata aggiunta la truttura di base per un analizzatore di tipo tempo
+
+È stato utilizzato il TFileProxy fornito nella cartella util per utilizzare lo setto file root con più analizzatori
+
+Da riga di comando per selezionare gli analizzatori
+
+analizzatore mass  : plotMass
+
+analizzatore tempo : plotTime
+
+print degli eventi   : dump
+
+Il nome del file root (stesso file per i due analizzatori) viene passato dopo il comando/opzione *RootFileName*
 
 ## Classi invariate rispetto alla [versione precedente](../hist_v3/readme.md)
 
-- x AnalysisFactory
-- x AnalysisInfo
-- x SourceFactory
-- x Event
-- x EventReadFromFile
-- x EventSim
-- x Utilities
+- AnalysisFactory
+- AnalysisInfo
+- SourceFactory
+- Event
+- EventReadFromFile
+- EventSim
+- Utilities
 
 ## Classi modificate
 
@@ -29,7 +39,7 @@ plotTime
 
 - EventSource
 
-	la funzione `get` è stada dichiarata come private
+	la funzione `get` è stada dichiarata come `private`
 
 	è stata aggiunta una funzione `run` che incorpora quello che prima era il *loop over events* del main della versione precedente, all'interno della funzione viene chiamata la funzione `notify` di `Dispatcher<Event>`
 
@@ -45,13 +55,13 @@ plotTime
 
 	la funzione `process` è stata rinominata in `update`
 
-	la funzione `update` crea un oggetto `ParticleReco`, ne chiama la funzione `update` e ottiene la massa invariante, infine elimina l'istanza di `ParticleReco`
+	la funzione `update` chiama una `instance()` di `ParticleReco` (*Singleton*), ne chiama la funzione `update` e ottiene la massa invariante
 
 	il nome dell'istogramma è dato da *mass + nome_ipotesi*
 
 - MassMean
 
-	la funzione `add` crea un oggetto `ParticleReco`, ne chiama la funzione `update` e ottiene la massa invariante, infine elimina l'istanza di `ParticleReco`
+	la funzione `add` chiama una `instance()` di `ParticleReco`, ne chiama la funzione `update` e ottiene la massa invariante
 
 - Constants
 	
@@ -87,7 +97,7 @@ plotTime
 	- `enum` (uguale a quello di ParticleReco)
 	- `double` per l'energia e uno per la massa invariante
 	- `double` per il tempo
-	- un puntatore a ParticleReco che viene assegnato (`new`) nel costruttore di classe ed eliminato nel distruttore
+	- un puntatore a ParticleReco che viene assegnato chiamando `instance()` nel costruttore di classe
 
 	come membri privati:
 
