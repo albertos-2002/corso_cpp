@@ -20,7 +20,7 @@
 
 - [x] [hist v3](hist_v3/readme.md)
 
-- [ ] [hist v4](hist_v4/readme.md)
+- [x] [hist v4](hist_v4/readme.md)
 
 - [ ] [hist v5](hist_v5/readme.md)
 
