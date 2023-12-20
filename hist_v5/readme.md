@@ -78,7 +78,7 @@ Classi prese da braggPlot_v5:
 
 	La funzione `compute` calcola la media e l'errore dei tempi di decadimento
 
-	La funzione inoltre si occupa di calcolare la *likelihood* secondo l'equazione 
+	La funzione inoltre si occupa di calcolare la *likelihood* secondo l'equazione: 
 
 	$$L(t_s) = \sum_{i = 1}^N \frac{t_i}{t_s} + log(t_s) + log( e^{ \frac{-t_{min}}{t_s} } - e^{ \frac{-t_{max}}{t_s} } )$$
 
@@ -90,7 +90,7 @@ Classi prese da braggPlot_v5:
 
 	La classe si occupa di fare il fit e tramite tre funzioni `a(), b(), c()` restituisce i parametri della parabola
 
-	Il tempo minimo viene calcolato come $t = \frac{-b}{2*c}$ e il relativo errore viene calcolato come $\frac{1}{\sqrt{2*c}}$
+	Il tempo minimo viene calcolato come $$t = \frac{-b}{2*c}$$ e il relativo errore viene calcolato come $$\frac{1}{\sqrt{2*c}}$$
 
 	In aggiunta viene creato un grafico ROOT, su file distinti in base alle ipotesi, della parabola (per avere una conferma grafica)
 
