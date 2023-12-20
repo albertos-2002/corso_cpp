@@ -80,11 +80,7 @@ Classi prese da braggPlot_v5:
 
 	La funzione inoltre si occupa di calcolare la *likelihood* secondo l'equazione 
 
-	$$
-
-	L(t_s) = \sum_{i = 1}^N \frac{t_i}{t_s} + log(t_s) + log( e^{ \frac{-t_{min}}{t_s} } - e^{ \frac{-t_{max}}{t_s} } )
-
-	$$
+	$$L(t_s) = \sum_{i = 1}^N \frac{t_i}{t_s} + log(t_s) + log( e^{ \frac{-t_{min}}{t_s} } - e^{ \frac{-t_{max}}{t_s} } )$$
 
 	dove con $t_i$ indichiamo il tempo di decadimento calcolato e conservato nel relativo vettore e con $t_s$ sono i tempi di scandione
 
