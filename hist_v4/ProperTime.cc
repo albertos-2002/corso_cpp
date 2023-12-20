@@ -11,7 +11,7 @@ using namespace std;
 
 class ParticleReco;
 
-ProperTime::ProperTime(const Event& evento_m) : Singleton<ParticleReco>(), LazyObserver<Event>() {
+ProperTime::ProperTime() : Singleton<ProperTime>(), LazyObserver<Event>() {
 }
 
 ProperTime::~ProperTime(){

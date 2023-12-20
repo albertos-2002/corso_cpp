@@ -1,7 +1,6 @@
 #include "header/ProperTime.h"
 #include "header/class_event.h"
 #include "header/class_constants.h"
-//#include "header/class_utilities.h"
 #include "header/ParticleReco.h"
 #include "LazyObserver.h"
 #include "Singleton.h"

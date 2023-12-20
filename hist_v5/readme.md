@@ -3,13 +3,11 @@
 [Back to index](../README.md)
 </div>
 
-# Particle Hist v4
+# Particle Hist v5
 
 ## Note generali
 
-È stata aggiunta la truttura di base per un analizzatore di tipo tempo
-
-È stato utilizzato il TFileProxy fornito nella cartella util per utilizzare lo setto file root con più analizzatori
+È stato utilizzato il TFileProxy fornito nella cartella util per utilizzare lo stesoo file root con più analizzatori
 
 Da riga di comando per selezionare gli analizzatori
 
@@ -21,122 +19,97 @@ print degli eventi   : dump
 
 Il nome del file root (stesso file per i due analizzatori) viene passato dopo il comando/opzione *RootFileName*
 
-## Classi invariate rispetto alla [versione precedente](../hist_v3/readme.md)
+I valori del range di massa, tempo, tempo scan e scan step vengono letti da file, il nome del file va inserito dopo, rispettivamente per massa e tempo, *MassFileName* e *TimeFileName*
+
+## Classi invariate rispetto alla [versione precedente](../hist_v4/readme.md)
 
 - AnalysisFactory
-- AnalysisInfo
 - SourceFactory
 - Event
+- EventSource
 - EventReadFromFile
 - EventSim
+- EventDump
+- MassMean
+- Constants
 - Utilities
+- ParticleReco
+- ProperTime
 
 ## Classi modificate
 
-- AnalysisSteering
+Classi prese da braggPlot_v5:
 
-	rimossa la funzione `process`
+- AnalysisInfo.h
+- AnalysisSteering .h .cc
 
-- EventSource
-
-	la funzione `get` è stada dichiarata come `private`
-
-	è stata aggiunta una funzione `run` che incorpora quello che prima era il *loop over events* del main della versione precedente, all'interno della funzione viene chiamata la funzione `notify` di `Dispatcher<Event>`
-
-- EventDump
-
-	la classe eredita pubblicamente anche da `ActiveObserver<Event>`
-
-	la funzione `process` è stata rinominata in `update`
+---
 
 - ParticleMass
 
-	la classe eredita pubblicamente anche da `ActiveObserver<Event>`
+	il range delle masse viene letto da un file passato da riga di comando
 
-	la funzione `process` è stata rinominata in `update`
+- LifetimeFit
 
-	la funzione `update` chiama una `instance()` di `ParticleReco` (*Singleton*), ne chiama la funzione `update` e ottiene la massa invariante
-
-	il nome dell'istogramma è dato da *mass + nome_ipotesi*
-
-- MassMean
-
-	la funzione `add` chiama una `instance()` di `ParticleReco`, ne chiama la funzione `update` e ottiene la massa invariante
-
-- Constants
+	come membri privati sono stati dichiarati:
 	
-	è stata aggiunta la costante `lightVelocity`
+	- minimo e massimo per il time range
+	- minimo e massimo per il range di scan 
+	- step di scansione
+
+	(questi primi 5 parametri sono gli argomenti del costruttore di classe)
+
+	- un contenitore per tutti i tempi calcolati
+	- media dei tempi
+	- errore della media
+
+	è stato rimosso il numero di eventi accettati
+
+	sono state aggiunte due funzioni *public*:
+
+	- lifeTime per ritornare la media dei tempi
+
+	- lifeTimeError per ritornare l'errore della media
+
+
+	La funzione `add` prende il tempo di decadimento da una `instance` di `ProperTime`, se è nel range desiderato lo aggiunge al vettore dei tempi di decadimento
+
+	La funzione `nEvents` fa il return della `.size()` del vettore dei tempi di decadimento
+
+	La funzione `compute` calcola la media e l'errore dei tempi di decadimento
+
+	La funzione inoltre si occupa di calcolare la *likelihood* secondo l'equazione 
+
+	$$
+	L(t_s) = \sum_{i = 1}^N \frac{t_i}{t_s} + log(t_s) + log( e^{ \frac{-t_{min}}{t_s} } - e^{ \frac{-t_{max}}{t_s} } )
+	$$
+
+	dove con $t_i$ indichiamo il tempo di decadimento calcolato e conservato nel relativo vettore e con $t_s$ sono i tempi di scandione
+
+	I risultati di *likelihood* e i tempi di scansione vengono conservati in una coppia di vettori
+
+	Viene instanziato un oggetto `QuadraticFitter`, ne viene chiamata la funzione `add` in modo da poter passare i relativi punti
+
+	La classe si occupa di fare il fit e tramite tre funzioni `a(), b(), c()` restituisce i parametri della parabola
+
+	Il tempo minimo viene calcolato come $ t = \frac{-b}{2*c} $ e il relativo errore viene calcolato come $ \frac{1}{\sqrt{2*c}} $
+
+	In aggiunta viene creato un grafico ROOT, su file distinti in base alle ipotesi, della parabola (per avere una conferma grafica)
+
+- ParticleLifetime
+
+	I parametri di massa e tutti i tempi di range e il valore di step per lo scan sono stati letti da un file passato da riga di comando
+
+	La funzione `pCreate` è stata aggiornata per gestire i nuovi parametri
+
 
 	
 
 ## Classi aggiunte 
 
-- ParticleReco
+- QuadraticFitter
 
-	la funzione eredita pubblicamente da `Singleton<Event>` e da `LazyObserver<Event>`
-
-	come membri *privati* sono stati dichiarati
-
-	- `enum` per la tipologia di decadimento
-	- `double` per l'energia totale
-	- `double` per la massa invariante
-	- `double` per la distanza di decadimento 
-
-	come membri *pubblici* sono stati dichiarati
-
-	- una funzione `update`, che accetta come argomento `const Event&` e contiene il codice della ex funzione globale mass, assegna i valori alle relative variabili, inoltre calcola e assegna la distanza di decadimento
-	- una variabile del tipo `enum`
-	- tre funzioni per ritornare il valore della massa invariante, energia totale e distanza
-
-- ProperTime
-
-	la classe è una copia di `ParticleReco` con le seguenti modifiche:
-
-	come membri privati:
-
-	- `enum` (uguale a quello di ParticleReco)
-	- `double` per l'energia e uno per la massa invariante
-	- `double` per il tempo
-	- un puntatore a ParticleReco che viene assegnato chiamando `instance()` nel costruttore di classe
-
-	come membri privati:
-
-	- una funzione `update` che calcola il tempo proprio, dato da 
-
-	$$
-		t = \frac{ distance * massa \ invariante }{ momento * c }
-	$$
-
-	con 
-
-	$$
-		momento = \sqrt{ energia^2 - massa \ invariante^2 } 
-	$$
-
-	- una funzione `decayTime` che fa il return della variabile *time*
-	- una variabile di tipo *enum*
-
-
-
-- LifetimeFit
-
-	la classe è una copia di `MassMean` con le seguenti modifiche:
-
-	vengono eliminati i memebri che contengono le somme, la media e rms, come le funzioni che li ritornano
-
-	la funzione `add` gestisce un oggetto `ParticleReco`, lo usa per ottenere la massa invariante e se rientra nel range aggiorna il contatore degli eventi
-
-	la funzione `compute` verrà implementata nella prossima versione
-
-- ParticleLifetime
-
-	la classe è una copia di `ParticleMass` con le seguenti modifiche:
-
-	la struttura `Particle` è stata aggiornata per contenere un puntatore a `LifetimeFit` invece che a *MassMean*
-
-	la funzione `pCreate` è stata aggiornata per prendere come argomneto anche un minimo e un massimo per il tempo
-
-	l'implementazione delle funzioni `pCreate`, `beginJob`, `endJob`, e `update` sono state adattate (mantenendo il concetto di base di *ParticleMass*) per lavorare sui tempi
+	si occupa di svolgere il fit parabolico necessario per trovare il tempo minimo
 
 
 ## Classi *util*
@@ -149,4 +122,3 @@ Il nome del file root (stesso file per i due analizzatori) viene passato dopo il
 
 ## Main
 
-Il loop su tutti gli eventi è stato trasformato un una chimata alla funzione `run` di EventSource`

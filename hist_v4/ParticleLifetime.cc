@@ -104,7 +104,7 @@ void ParticleLifetime::update( const Event& classe_evento ){
     if ( ptr_particle_lt.at(i) -> ptr_lifetime -> add( classe_evento ) ) {
    
       //creazione istanza a particle reco, svolgimento della ex funzione mass e estrazione del tempo proprio
-      ProperTime* ptr_propertime = new ProperTime( classe_evento );
+      ProperTime* ptr_propertime = new ProperTime();
       ptr_propertime -> update(classe_evento);
    
       ptr_particle_lt.at(i) -> ptr_histo -> Fill( ptr_propertime -> decayTime() );

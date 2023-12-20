@@ -6,7 +6,7 @@
 #include "class_event.h"
 #include "ParticleReco.h"
 
-class ProperTime : public Singleton<ParticleReco> , public LazyObserver<Event> {
+class ProperTime : public Singleton<ProperTime> , public LazyObserver<Event> {
 
   private:
   
@@ -21,7 +21,7 @@ class ProperTime : public Singleton<ParticleReco> , public LazyObserver<Event> {
   
   public:
   
-  ProperTime(const Event& evento_m);
+  ProperTime();
   ~ProperTime();
   
   void update(const Event& evento_m);

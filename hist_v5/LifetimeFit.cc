@@ -108,8 +108,7 @@ using namespace std;
     mean_time = -( ptr_quadraticfitter->b() )/(2* (ptr_quadraticfitter->c()) );
     error_time = 1/sqrt(2* (ptr_quadraticfitter->c()) );    
     
-    //grafico della parabola ------------------------------------------------
-    
+    //grafico della parabola ------------------------------------------------  
       TDirectory* currentDir = gDirectory;
       string nome_grafico = nome_grafico_parabola+"Parabola"+".root";
       TFile* ptr_tfile = new TFile( nome_grafico.c_str() , "RECREATE");
@@ -118,8 +117,7 @@ using namespace std;
       grp -> Write( nome_grafico_parabola.c_str() );
       ptr_tfile -> Close();
       currentDir -> cd();
-      delete ptr_tfile;
-    
+      delete ptr_tfile;    
     //-----------------------------------------------------------------------
     
     delete ptr_quadraticfitter;

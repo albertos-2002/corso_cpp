@@ -9,7 +9,7 @@
 
 È stata aggiunta la truttura di base per un analizzatore di tipo tempo
 
-È stato utilizzato il TFileProxy fornito nella cartella util per utilizzare lo setto file root con più analizzatori
+È stato utilizzato il TFileProxy fornito nella cartella util per utilizzare lo stesso file root con più analizzatori
 
 Da riga di comando per selezionare gli analizzatori
 
