@@ -122,3 +122,4 @@ Classi prese da braggPlot_v5:
 
 ## Main
 
+Il main è stato modificato per adattarsi alla nuova versione
