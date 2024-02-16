@@ -1,0 +1,81 @@
+#!/bin/sh
+
+export CORSOCXX_PATH=${HOME}/TMP_stuff/test_cd_v6
+export CORSOCXX_UTIL=${CORSOCXX_PATH}/util/include/
+cd `dirname $0`
+export ANALYSIS_PATH=`/bin/pwd` #set the directory as the same as corsocxx_path
+
+#####################################################################
+
+export LIB_NAME=AnalysisFramework
+echo "compile " ${LIB_NAME}
+cd ${ANALYSIS_PATH}/${LIB_NAME}
+rm -f ${ANALYSIS_PATH}/lib${LIB_NAME}.so
+c++ -Wall $(root-config --cflags --libs) -fPIC -shared -I. -I ${CORSOCXX_UTIL} -I ${ANALYSIS_PATH} \
+-o ${ANALYSIS_PATH}/lib${LIB_NAME}.so *.cc *.cpp
+
+export LIB_NAME=AnalysisObjects
+echo "compile " ${LIB_NAME}
+cd ${ANALYSIS_PATH}/${LIB_NAME}
+rm -f ${ANALYSIS_PATH}/lib${LIB_NAME}.so
+c++ -Wall $(root-config --cflags --libs) -fPIC -shared -I. -I ${CORSOCXX_UTIL} -I ${ANALYSIS_PATH} \
+-o ${ANALYSIS_PATH}/lib${LIB_NAME}.so *.cc
+
+export LIB_NAME=AnalysisUtilities
+echo "compile " ${LIB_NAME}
+cd ${ANALYSIS_PATH}/${LIB_NAME}
+rm -f ${ANALYSIS_PATH}/lib${LIB_NAME}.so
+c++ -Wall -fPIC -shared -I. -I ${CORSOCXX_UTIL} -I ${ANALYSIS_PATH} \
+-o ${ANALYSIS_PATH}/lib${LIB_NAME}.so *.cc
+
+export LIB_NAME=AnalysisPlugins
+echo "compile " ${LIB_NAME}
+cd ${ANALYSIS_PATH}/${LIB_NAME}
+rm -f ${ANALYSIS_PATH}/lib${LIB_NAME}.so
+c++ -Wall $(root-config --cflags --libs) -fPIC -shared -I. -I ${CORSOCXX_UTIL} -I ${ANALYSIS_PATH} \
+-o ${ANALYSIS_PATH}/lib${LIB_NAME}.so *.cc
+
+#####################################################################
+
+cd ${ANALYSIS_PATH}
+
+#echo "Directory: analysis path  " ${ANALYSIS_PATH}
+
+export EXE_NAME=runAll
+echo "compile " ${EXE_NAME}
+rm -f ${EXE_NAME}
+g++ -Wall -fPIC -I. -I ${ANALYSIS_PATH} -I ${CORSOCXX_UTIL}         \
+-o ${EXE_NAME} dum.cc -L ${ANALYSIS_PATH} -Wl,--no-as-needed        \
+-lAnalysisFramework -lAnalysisObjects -lAnalysisUtilities           \
+-lAnalysisPlugins                                      
+	
+export LD_LIBRARY_PATH=${ANALYSIS_PATH}:${LD_LIBRARY_PATH}
+
+echo "ATTENTION! if you havent use source to execute the script, the shared library path have to be manually set"
+echo
+echo "Eseguire uno dei seguenti comandi in base al modulo di codice necessario"
+echo
+echo "Per eventi letti da file"
+echo
+echo "./runAll plotMass RootFileName histo.root MassFileName ../massRanges input ../particles_events"
+echo "./runAll plotTime RootFileName histo.root TimeFileName ../particleFitters input ../particles_events"
+echo "./runAll dump input ../particles_events"
+echo "./runAll plotMass RootFileName histo.root dump MassFileName ../massRanges input ../particles_events"
+echo "./runAll plotTime RootFileName histo.root dump TimeFileName ../particleFitters input ../particles_events"
+echo
+echo "./runAll plotMass plotTime RootFileName histo.root MassFileName ../massRanges TimeFileName ../particleFitters input ../particles_events"
+echo "./runAll plotMass plotTime RootFileName histo.root dump MassFileName ../massRanges TimeFileName ../particleFitters input ../particles_events"
+echo
+echo "Per eventi sumulati"
+echo
+echo "./runAll plotMass RootFileName histo_sim.root MassFileName ../massRanges sim \"numero_eventi\" \"seed\""
+echo "./runAll plotTime RootFileName histo_sim.root TimeFileName ../particleFitters sim \"numero_eventi\" \"seed\""
+echo "./runAll dump sim \"numero_eventi\" \"seed\""
+echo "./runAll plotMass RootFileName histo_sim.root dump MassFileName ../massRanges sim \"numero_eventi\" \"seed\""
+echo "./runAll plotTime RootFileName histo_sim.root dump TimeFileName ../particleFitters sim \"numero_eventi\" \"seed\""
+echo
+echo "./runAll plotMass plotTime RootFileName histo_sim.root MassFileName ../massRanges TimeFileName ../particleFitters sim \"numero_eventi\" \"seed\""
+echo "./runAll plotMass plotTime RootFileName histo_sim.root dump MassFileName ../massRanges TimeFileName ../particleFitters sim \"numero_eventi\" \seed\""
+
+
+#'root-config --libs`
