@@ -1,8 +1,7 @@
 #ifndef ActiveObserver_H
 #define ActiveObserver_H
 
-template <class T>
-class ActiveObserver {
+template <typename T> class ActiveObserver {
 
  public:
 
@@ -15,11 +14,10 @@ class ActiveObserver {
   // destructor
   virtual ~ActiveObserver();
 
-  virtual void update( const T& x ) = 0;
+  virtual void update( const T& x ) = 0; //implementata nelle funzioni derivate
 
 };
 
 #include "ActiveObserver.hpp"
 
 #endif
-

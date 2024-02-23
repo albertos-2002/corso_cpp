@@ -1,19 +1,20 @@
 #ifndef Dispatcher_H
 #define Dispatcher_H
 
-#include <set>
+#include <set> //vettori non ordinati
 
 template <class T> class ActiveObserver;
 template <class T> class   LazyObserver;
 
-template <class T>
-class Dispatcher {
+template <class T> class Dispatcher {
 
+  //possono accedere ai membri privati
   friend class ActiveObserver<T>;
   friend class   LazyObserver<T>;
 
  public:
 
+  //non necessari in quanto tutto è "static" ed esiste senza la necessità di una istanza
   Dispatcher()  = delete;
   ~Dispatcher() = delete;
 

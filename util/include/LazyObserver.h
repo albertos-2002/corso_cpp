@@ -1,8 +1,7 @@
 #ifndef LazyObserver_H
 #define LazyObserver_H
 
-template <class T>
-class LazyObserver {
+template <class T> class LazyObserver {
 
  public:
 
@@ -19,7 +18,7 @@ class LazyObserver {
 
  protected:
 
-  virtual void update( const T& x ) = 0;
+  virtual void update( const T& x ) = 0; //implementata nelle classi derivate
   virtual void check();
 
  private:

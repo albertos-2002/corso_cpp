@@ -2,13 +2,14 @@
 #include "Dispatcher.h"
 #include <iostream>
 
-template <class T>
-ActiveObserver<T>::ActiveObserver() {
+//costruttore
+//il "this" è riferito alla classe ActiveObserver (o alle derivate)
+template <class T> ActiveObserver<T>::ActiveObserver() {
   Dispatcher<T>::subscribe( this );
 }
 
-template <class T>
-ActiveObserver<T>::~ActiveObserver() {
+//distruttore
+template <class T> ActiveObserver<T>::~ActiveObserver() {
   Dispatcher<T>::unsubscribe( this );
 }
 
