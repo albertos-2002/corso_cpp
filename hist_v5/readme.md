@@ -7,7 +7,7 @@
 
 ## Note generali
 
-È stato utilizzato il TFileProxy fornito nella cartella util per utilizzare lo stesoo file root con più analizzatori
+È stato utilizzato il TFileProxy fornito nella cartella util per utilizzare lo steso file root con più analizzatori
 
 Da riga di comando per selezionare gli analizzatori
 

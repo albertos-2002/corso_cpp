@@ -32,6 +32,15 @@ const string& AnalysisInfo::value( const string& key ) const {
   while ( i < n ) {
     // if word is equal to key, return next word
     if ( args[i++] == key ) return args[i];
+	/*
+	si nota che all'interno del ciclo if viene utilizzato un
+	post-incremento, questo significa che prima viene ritornato il
+	contenuto di args alla posizione i (che viene confrontato con
+	il valore della key desiderata), successivamente i viene
+	incrementata di una unità e quindi si passa alla prossima istruzione,
+	dato che l'incremento è avvenuto nel controllo, l'istruzione successiva
+	ritorna un valore che si trova alla posizione successiva rispetto al controllo
+	*/
   }
   // if key not found, return a default string
   return defaultString;
