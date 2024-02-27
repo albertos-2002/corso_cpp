@@ -12,4 +12,3 @@ template <class T> ActiveObserver<T>::ActiveObserver() {
 template <class T> ActiveObserver<T>::~ActiveObserver() {
   Dispatcher<T>::unsubscribe( this );
 }
-

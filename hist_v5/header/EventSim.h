@@ -21,7 +21,8 @@ class EventSim: public EventSource {
   // destructor
   ~EventSim() override;
 
-  // get an event  //spostata a public
+  // get an event  
+  //spostata a public
   const Event* get() override;
 
  private:
