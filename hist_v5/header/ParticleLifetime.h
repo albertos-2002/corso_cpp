@@ -42,7 +42,8 @@ class ParticleLifetime : public AnalysisSteering, public ActiveObserver<Event> {
   
   void endJob() override;
   
-  void update( const Event& classe_evento );
+  //la funzione fa riferimento all' active observer
+  void update( const Event& classe_evento ) override;
   
   void pCreate( string& nome, float minimo, float massimo, float minimo_tempo, float massimo_tempo, float minimo_scan, float massimo_scan, float step);
 

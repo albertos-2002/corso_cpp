@@ -12,7 +12,13 @@ using namespace std;
 class EventDumpFactory: public AnalysisFactory::AbsFactory {
  public:
   // assign "dump" as name for this analyzer and factory
+  /*
+  il costruttore della classe eventdumpfactory chiama il costruttore
+  della classe absfactory (contenuta nella classe analysisfactory)
+  e gli passa come arogmento la stringa "dump"
+  */
   EventDumpFactory(): AnalysisFactory::AbsFactory( "dump" ) {}
+  
   // create an EventDump when builder is run
   AnalysisSteering* create( const AnalysisInfo* info ) override {
     return new EventDump( info );

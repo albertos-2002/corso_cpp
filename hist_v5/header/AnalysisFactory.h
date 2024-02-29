@@ -22,15 +22,25 @@ class AnalysisFactory {
   // create all requested analysis objects
   static std::vector<AnalysisSteering*> create( const AnalysisInfo* info );
 
+//----------------------------------------------------------------------------------------------------
+
   // analysis object abstract factory
   class AbsFactory {
    public:
     // Analyzers are registered with a name so that they are actually 
     // created only if, at runtime, their name is listed in the command line
-    AbsFactory( const std::string& name ) { registerFactory( name, this ); }
+    
+    //costruttore
+    AbsFactory( const std::string& name ) {
+      registerFactory( name, this );
+      //il "this" si riferisce alla relativa istanza di AbsFactory;
+    }
+    
     virtual ~AbsFactory() {}
     virtual AnalysisSteering* create( const AnalysisInfo* info ) = 0;
   };
+
+//-----------------------------------------------------------------------------------------------------
 
  private:
 

@@ -16,6 +16,7 @@ AnalysisFactory::~AnalysisFactory() {
 
 // create all requested analysis objects
 vector<AnalysisSteering*> AnalysisFactory::create( const AnalysisInfo* info ) {
+  //creazione di un vettore di oggetti puntatore ad analysissteering
   vector<AnalysisSteering*> aList;
   // loop over analysis object factories
   static map<string,AbsFactory*>* fm = factoryMap();

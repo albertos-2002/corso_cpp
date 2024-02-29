@@ -48,6 +48,7 @@ ParticleMass::~ParticleMass(){
     delete c;
     }
 
+  //libera la memoria occupata dal vettore
   ptr_particle_pm.clear();
 
 }

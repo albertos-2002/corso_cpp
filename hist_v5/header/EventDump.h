@@ -24,7 +24,8 @@ class EventDump: public AnalysisSteering, public ActiveObserver<Event> {
   // function to be called at execution end
   void   endJob() override;
   // function to be called for each event
-  void update( const Event& ev );
+  //chiamata alla funzione update dell active observer
+  void update( const Event& ev ) override;
 
 };
 
