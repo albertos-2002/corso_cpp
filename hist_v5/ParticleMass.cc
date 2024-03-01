@@ -36,7 +36,7 @@ static ParticleMassFactory pm;
 
 //-----------------------------------------------------------------------------------------------
 
-ParticleMass::ParticleMass(const AnalysisInfo* info_arg):AnalysisSteering(info_arg), ActiveObserver<Event>(){
+ParticleMass::ParticleMass(const AnalysisInfo* info_arg):AnalysisSteering(info_arg){
 }
 
 ParticleMass::~ParticleMass(){

@@ -40,7 +40,7 @@ class ParticleLifetimeFactory: public AnalysisFactory::AbsFactory {
 static ParticleLifetimeFactory pl;
 //-----------------------------------------------------------------------------------------------------------------------------
 
-ParticleLifetime::ParticleLifetime(const AnalysisInfo* info_arg):AnalysisSteering(info_arg), ActiveObserver<Event>(){
+ParticleLifetime::ParticleLifetime(const AnalysisInfo* info_arg):AnalysisSteering(info_arg){
 }
 
 ParticleLifetime::~ParticleLifetime(){
@@ -107,15 +107,15 @@ void ParticleLifetime::endJob(){
 
 void ParticleLifetime::update( const Event& classe_evento ){
 
+  //creazione istanza a proper time, svolgimento della funzione ... e estrazione del tempo di decadimento
+  static ProperTime* ptr_propertime = ProperTime::instance(); 
+  ptr_propertime -> update( classe_evento );
+
   for (unsigned int i = 0; i < ptr_particle_lt.size(); ++i){
   
     if ( ptr_particle_lt.at(i) -> ptr_lifetime -> add( classe_evento ) ) {
    
-      static ProperTime* ptr_propertime = ProperTime::instance(); 
-      ptr_propertime -> update( classe_evento );
-   
       ptr_particle_lt.at(i) -> ptr_histo -> Fill( ptr_propertime -> decayTime() );
-
     }
   
   }

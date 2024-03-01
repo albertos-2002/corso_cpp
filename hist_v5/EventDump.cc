@@ -33,7 +33,7 @@ static EventDumpFactory ed;
 
 //-------------------------------------------------------------------------------------------------
 
-EventDump::EventDump(const AnalysisInfo* info_arg): AnalysisSteering(info_arg), ActiveObserver<Event>(){
+EventDump::EventDump(const AnalysisInfo* info_arg): AnalysisSteering(info_arg){
 }
 
 
