@@ -7,8 +7,6 @@
 
 class ParticleReco : public Singleton<ParticleReco> , public LazyObserver<Event> {
 
-//friend class Singleton<ParticleReco>;
-
   private:
   
   enum decay_type{
