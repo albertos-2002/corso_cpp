@@ -10,18 +10,17 @@
 using namespace std;
 
   LifetimeFit::LifetimeFit( double min_mass, double max_mass, double max_time, double min_time, double max_scan, double min_scan, double step_scan):    
-
-  min_invariant_mass(min_mass),
-  max_invariant_mass(max_mass),
-  min_time_range(min_time),
-  max_time_range(max_time),
-  min_scan_range(min_scan),
-  max_scan_range(max_scan),
-  scan_step(step_scan)
-  {
+    min_invariant_mass(min_mass),
+    max_invariant_mass(max_mass),
+    min_time_range(min_time),
+    max_time_range(max_time),
+    min_scan_range(min_scan),
+    max_scan_range(max_scan),
+    scan_step(step_scan) {
   }
   
-  LifetimeFit::~LifetimeFit(){  }                  
+  LifetimeFit::~LifetimeFit(){  
+  }
 
   bool LifetimeFit::add( const Event& evento_a ){  
 

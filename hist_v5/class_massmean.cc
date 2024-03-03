@@ -30,10 +30,9 @@ using namespace std;
     
     if ( massa_tmp <= max_invariant_mass && massa_tmp >= min_invariant_mass ) {
 
-      sum_masses += massa_tmp ;
-      sqr_sum_masses += (massa_tmp*massa_tmp) ;
-      selected_events++ ;
-      
+      sum_masses += massa_tmp;
+      sqr_sum_masses += (massa_tmp*massa_tmp);
+      selected_events++;    
       return true;
     }
     else{
