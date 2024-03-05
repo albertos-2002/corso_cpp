@@ -1,8 +1,8 @@
 #ifndef propertime_h
 #define propertime_h
 
-#include "../../util/include/Singleton.h"
-#include "../../util/include/LazyObserver.h"
+#include "Singleton.h"
+#include "LazyObserver.h"
 #include "../../AnalysisFramework/header/class_event.h"
 #include "ParticleReco.h"
 

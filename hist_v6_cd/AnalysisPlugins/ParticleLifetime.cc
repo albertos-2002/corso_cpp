@@ -9,11 +9,11 @@
 #include "header/ParticleLifetime.h"
 #include "../AnalysisFramework/header/AnalysisInfo.h"
 #include "../AnalysisFramework/header/AnalysisFactory.h"
-#include "../util/include/ActiveObserver.h"
+#include "ActiveObserver.h"
 #include "../AnalysisObjects/header/ParticleReco.h"
 #include "../AnalysisObjects/header/ProperTime.h"
 #include "../AnalysisFramework/header/class_event.h"
-#include "../util/include/TFileProxy.h"
+#include "TFileProxy.h"
 using namespace std;
 
 class ParticleLifetime;

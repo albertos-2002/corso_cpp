@@ -2,8 +2,8 @@
 #include "../AnalysisFramework/header/class_event.h"
 #include "../AnalysisUtilities/header/class_constants.h"
 #include "header/ParticleReco.h"
-#include "../util/include/LazyObserver.h"
-#include "../util/include/Singleton.h"
+#include "LazyObserver.h"
+#include "Singleton.h"
 #include <cmath>
 #include <vector>
 using namespace std;

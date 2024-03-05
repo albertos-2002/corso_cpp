@@ -6,7 +6,7 @@
 #include <TGraph.h>
 #include <TFile.h>
 #include "../AnalysisUtilities/header/QuadraticFitter.h"
-#include "../util/include/TFileProxy.h"
+#include "TFileProxy.h"
 using namespace std;
 
   LifetimeFit::LifetimeFit( double min_mass, double max_mass, double max_time, double min_time, double max_scan, double min_scan, double step_scan):    

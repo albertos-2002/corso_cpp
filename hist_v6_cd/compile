@@ -1,13 +1,14 @@
 #!/bin/sh
 
-export CORSOCXX_PATH=${HOME}/TMP_stuff/test_cd_v6
-export CORSOCXX_UTIL=${CORSOCXX_PATH}/util/include/
+export CORSOCXX_PATH=${HOME}/UniPd_github/corso_cpp/hist_v6_cd
+#export CORSOCXX_UTIL=${CORSOCXX_PATH}/util/include/
+export CORSOCXX_UTIL=${HOME}/UniPd_github/corso_cpp/util/include
 cd `dirname $0`
 export ANALYSIS_PATH=`/bin/pwd` #set the directory as the same as corsocxx_path
 #se si presentano errori di compilazione come "missing directory", sostituire la riga 6 con la 8
 #export ANALYSIS_PATH=${CORSOCXX_PATH}
 
-echo "Per errori di compilazione vedere souce del compile"
+echo "Per errori di compilazione (missing directory) vedere souce del compile"
 
 #####################################################################
 
@@ -104,6 +105,7 @@ g++ -Wall -fPIC -I. -I ${ANALYSIS_PATH} -I ${CORSOCXX_UTIL}         \
 	
 export LD_LIBRARY_PATH=${ANALYSIS_PATH}:${LD_LIBRARY_PATH}
 
+echo
 echo "ATTENTION! if you havent use source to execute the script, the shared library path have to be manually set"
 echo
 echo "Copy and paste one one of the following commands to execute the desired block of code"
@@ -121,6 +123,3 @@ echo "./runMass plotMass RootFileName histo_sim.root MassFileName ../massRanges 
 echo "./runTime plotTime RootFileName histo_sim.root TimeFileName ../particleFitters sim \"numero_eventi\" \"seed\""
 echo "./runDump dump sim \"numero_eventi\" \"seed\""
 echo "./runAll plotMass plotTime RootFileName histo_sim.root dump MassFileName ../massRanges TimeFileName ../particleFitters sim \"numero_eventi\" \seed\""
-
-
-#'root-config --libs`

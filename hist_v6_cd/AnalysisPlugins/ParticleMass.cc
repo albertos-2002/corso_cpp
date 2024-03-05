@@ -9,9 +9,9 @@
 #include "header/ParticleMass.h"
 #include "../AnalysisFramework/header/AnalysisInfo.h"
 #include "../AnalysisFramework/header/AnalysisFactory.h"
-#include "../util/include/ActiveObserver.h"
+#include "ActiveObserver.h"
 #include "../AnalysisObjects/header/ParticleReco.h"
-#include "../util/include/TFileProxy.h"
+#include "TFileProxy.h"
 using namespace std;
 
 class ParticleMass;

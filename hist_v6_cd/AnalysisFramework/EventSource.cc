@@ -1,5 +1,5 @@
 #include "header/EventSource.h"
-#include "../util/include/Dispatcher.h"
+#include "Dispatcher.h"
 
 
 EventSource::EventSource() {

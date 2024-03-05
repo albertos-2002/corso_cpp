@@ -2,7 +2,7 @@
 #include "../AnalysisFramework/header/class_event.h"
 #include "../AnalysisFramework/header/AnalysisInfo.h"
 #include "../AnalysisFramework/header/AnalysisFactory.h"
-#include "../util/include/ActiveObserver.h"
+#include "ActiveObserver.h"
 #include <iostream>
 using namespace std;
 

@@ -9,7 +9,7 @@
 #include "../../AnalysisFramework/header/AnalysisInfo.h"
 #include <TFile.h>
 #include <TH1F.h>
-#include "../../util/include/ActiveObserver.h"
+#include "ActiveObserver.h"
 #include "../../AnalysisFramework/header/class_event.h"
 using namespace std;
 

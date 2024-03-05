@@ -3,7 +3,7 @@
 
 #include "../../AnalysisFramework/header/AnalysisSteering.h"
 #include "../../AnalysisFramework/header/AnalysisInfo.h"
-#include "../../util/include/ActiveObserver.h"
+#include "ActiveObserver.h"
 #include "../../AnalysisFramework/header/class_event.h"
 
 class Event;
