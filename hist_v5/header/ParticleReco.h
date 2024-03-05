@@ -7,9 +7,11 @@
 
 class ParticleReco : public Singleton<ParticleReco> , public LazyObserver<Event> {
 
+friend class Singleton<ParticleReco>;
+
   private:
   
-  enum decay_type{
+  decay type_enum{
     lambda,
     k0,
     default_reset
@@ -19,13 +21,17 @@ class ParticleReco : public Singleton<ParticleReco> , public LazyObserver<Event>
   double invariant_mass;
   double distance;
   
-  public:
+  //public:
   
   //costruttore privato in modo da non poter creare una istanza che non sia singleton
   ParticleReco();
+  
+  ParticleReco           ( const ParticleReco& x ) = delete;
+  ParticleReco& operator=( const ParticleReco& x ) = delete;
+  
   ~ParticleReco() override;
   
-  //public:
+  public:
   
   void update( const Event& evento_m ) override;
   

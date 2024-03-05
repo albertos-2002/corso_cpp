@@ -8,6 +8,8 @@
 
 class ProperTime : public Singleton<ProperTime> , public LazyObserver<Event> {
 
+friend class Singleton<ProperTime>;
+
   private:
   
   enum decay_type{
@@ -19,13 +21,17 @@ class ProperTime : public Singleton<ProperTime> , public LazyObserver<Event> {
   double invariant_mass;
   double time;
 
-  public:
+  //public:
   
   //costruttore privato in modo da non poter creare una istanza che non sia singleton
   ProperTime();
+  
+  ProperTime           ( const ProperTime& x ) = delete;
+  ProperTime& operator=( const ProperTime& x ) = delete;
+  
   ~ProperTime();
   
-  //public:
+  public:
   
   void update(const Event& evento_m);
   

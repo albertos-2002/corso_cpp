@@ -9,7 +9,7 @@ template <class T> class Singleton {
   static T* instance();  //"per definizione" la stessa istanza per tutto il programma
   static bool verbose;
 
- protected:
+  protected:
 
   // the object can be created only through a derived object
   // created in its turn by the "instance()" function
