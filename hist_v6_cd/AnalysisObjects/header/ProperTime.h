@@ -7,6 +7,7 @@
 #include "ParticleReco.h"
 
 class ProperTime : public Singleton<ProperTime> , public LazyObserver<Event> {
+friend class Singleton<ProperTime>;
 
   private:
   
@@ -19,10 +20,12 @@ class ProperTime : public Singleton<ProperTime> , public LazyObserver<Event> {
   double invariant_mass;
   double time;
   
-  public:
-  
   ProperTime();
+  ProperTime           ( const ProperTime& x ) = delete;
+  ProperTime& operator=( const ProperTime& x ) = delete;
   ~ProperTime();
+  
+  public:
   
   void update(const Event& evento_m);
   

@@ -4,6 +4,10 @@ export CORSOCXX_PATH=${HOME}/TMP_stuff/test_cd_v6
 export CORSOCXX_UTIL=${CORSOCXX_PATH}/util/include/
 cd `dirname $0`
 export ANALYSIS_PATH=`/bin/pwd` #set the directory as the same as corsocxx_path
+#se si presentano errori di compilazione come "missing directory", sostituire la riga 6 con la 8
+#export ANALYSIS_PATH=${CORSOCXX_PATH}
+
+echo "Per errori di compilazione vedere souce del compile"
 
 #####################################################################
 

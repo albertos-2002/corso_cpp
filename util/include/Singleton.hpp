@@ -1,7 +1,7 @@
 // included by "Singleton.h"
 #include <iostream>
 
-template <class T> bool Singleton<T>::verbose = true;
+template <class T> bool Singleton<T>::verbose = false;
 
 template <class T> Singleton<T>::Singleton() {
   if ( verbose ) std::cout << "create Singleton " << this << std::endl; 

@@ -6,8 +6,7 @@
 #include "../../AnalysisFramework/header/class_event.h"
 
 class ParticleReco : public Singleton<ParticleReco> , public LazyObserver<Event> {
-
-//friend class Singleton<ParticleReco>;
+friend class Singleton<ParticleReco>;
 
   private:
   
@@ -21,10 +20,12 @@ class ParticleReco : public Singleton<ParticleReco> , public LazyObserver<Event>
   double invariant_mass;
   double distance;
   
-  public:
-  
   ParticleReco();
+  ParticleReco           ( const ParticleReco& x ) = delete;
+  ParticleReco& operator=( const ParticleReco& x ) = delete;  
   ~ParticleReco() override;
+  
+  public:
   
   void update( const Event& evento_m ) override;
   
