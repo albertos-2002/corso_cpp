@@ -21,8 +21,11 @@ class ParticleReco : public Singleton<ParticleReco> , public LazyObserver<Event>
   
   public:
   
+  //costruttore privato in modo da non poter creare una istanza che non sia singleton
   ParticleReco();
   ~ParticleReco() override;
+  
+  //public:
   
   void update( const Event& evento_m ) override;
   

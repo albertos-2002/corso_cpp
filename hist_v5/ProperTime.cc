@@ -35,5 +35,6 @@ void ProperTime::update(const Event& evento_m){
 }
 
 double ProperTime::decayTime(){
+  check();
   return time;
 }
