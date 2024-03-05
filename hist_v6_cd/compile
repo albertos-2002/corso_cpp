@@ -106,7 +106,7 @@ g++ -Wall -fPIC -I. -I ${ANALYSIS_PATH} -I ${CORSOCXX_UTIL}         \
 export LD_LIBRARY_PATH=${ANALYSIS_PATH}:${LD_LIBRARY_PATH}
 
 echo
-echo "ATTENTION! if you havent use source to execute the script, the shared library path have to be manually set"
+echo "ATTENTION! if you have not used \"source\" to execute the script, the shared library path have to be manually set"
 echo
 echo "Copy and paste one one of the following commands to execute the desired block of code"
 echo
