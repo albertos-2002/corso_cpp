@@ -11,7 +11,7 @@ friend class Singleton<ParticleReco>;
 
   private:
   
-  decay type_enum{
+  enum decay_type{
     lambda,
     k0,
     default_reset

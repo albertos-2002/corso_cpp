@@ -15,7 +15,7 @@
 using namespace std;
 
 class ParticleLifetime;
-
+class ProperTime;
 
 //------------------------------------------------------------------------------------------------------------------------
 //from braggplotv3
@@ -37,7 +37,7 @@ class ParticleLifetimeFactory: public AnalysisFactory::AbsFactory {
 static ParticleLifetimeFactory pl;
 //-----------------------------------------------------------------------------------------------------------------------------
 
-ParticleLifetime::ParticleLifetime(const AnalysisInfo* info_arg):AnalysisSteering(info_arg), ActiveObserver<Event>(){
+ParticleLifetime::ParticleLifetime(const AnalysisInfo* info_arg):AnalysisSteering(info_arg)/*, ActiveObserver<Event>()*/{
 }
 
 ParticleLifetime::~ParticleLifetime(){
@@ -99,17 +99,16 @@ void ParticleLifetime::endJob(){
 
 void ParticleLifetime::update( const Event& classe_evento ){
 
+  //creazione istanza a particle reco, svolgimento della ex funzione mass e estrazione del tempo proprio
+  static ProperTime* ptr_propertime = ProperTime::instance();
+  ptr_propertime -> update(classe_evento);
+
   for (unsigned int i = 0; i < ptr_particle_lt.size(); ++i){
   
     if ( ptr_particle_lt.at(i) -> ptr_lifetime -> add( classe_evento ) ) {
-   
-      //creazione istanza a particle reco, svolgimento della ex funzione mass e estrazione del tempo proprio
-      ProperTime* ptr_propertime = ProperTime::instance();
-      ptr_propertime -> update(classe_evento);
-   
+
       ptr_particle_lt.at(i) -> ptr_histo -> Fill( ptr_propertime -> decayTime() );
     
-      delete ptr_propertime;
     }
   
   }
@@ -125,7 +124,7 @@ void ParticleLifetime::pCreate( const string& nome, float minimo, float massimo,
   int bin_numb = 20;
   
   ptr_particle_lt.at(index) -> str_name = nome;
-  
+   
   ptr_particle_lt.at(index) -> ptr_lifetime = new LifetimeFit(minimo, massimo);
   
   const string new_nome = "time" + nome;

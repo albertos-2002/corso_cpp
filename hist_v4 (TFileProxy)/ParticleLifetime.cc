@@ -100,17 +100,15 @@ void ParticleLifetime::endJob(){
 
 void ParticleLifetime::update( const Event& classe_evento ){
 
+  //creazione istanza a particle reco, svolgimento della ex funzione mass e estrazione del tempo proprio
+  static ProperTime* ptr_propertime = ProperTime::instance();
+  ptr_propertime -> update(classe_evento);
+
   for (unsigned int i = 0; i < ptr_particle_lt.size(); ++i){
   
     if ( ptr_particle_lt.at(i) -> ptr_lifetime -> add( classe_evento ) ) {
    
-      //creazione istanza a particle reco, svolgimento della ex funzione mass e estrazione del tempo proprio
-      ProperTime* ptr_propertime = ProperTime::instance();
-      ptr_propertime -> update(classe_evento);
-   
       ptr_particle_lt.at(i) -> ptr_histo -> Fill( ptr_propertime -> decayTime() );
-    
-      delete ptr_propertime;
     }
   
   }

@@ -3,6 +3,8 @@ g++ -Wall $(root-config --cflags --libs) -I ../util/include particleHist_v4.cpp 
 
 esecuzione: 
 
+(EventReadFromFile)
+
 ./particleHist_v4_exe plotMass RootFileName histo.root input ../particles_events
 ./particleHist_v4_exe plotTime RootFileName histo.root input ../particles_events
 ./particleHist_v4_exe dump input ../particles_events
@@ -11,6 +13,8 @@ esecuzione:
 
 ./particleHist_v4_exe plotMass plotTime RootFileName histo.root input ../particles_events
 ./particleHist_v4_exe plotMass plotTime RootFileName histo.root dump input ../particles_events
+
+(EventSim)
 
 ./particleHist_v4_exe plotMass RootFileName histo_sim.root sim "numero_eventi" "seed"
 ./particleHist_v4_exe plotTime RootFileName histo_sim.root sim "numero_eventi" "seed"
