@@ -29,11 +29,11 @@ Viene definita come `abstract class`, (pure virtual function), fornisce una base
 ### EventReadFromFile (.h .cc)
 Classe derivata da *EventSource* (eredita pubblicamente)
 
-I membri privati sichiarati sono un oggetto `ifstream` e le variabile interne della ex funzione globale *read*
+I membri privati dichiarati sono un oggetto `ifstream` e le variabile interne della ex funzione globale *read*
 
-La classe si occupa di leggere i dati relativi ad un evento e ritornare un puntatore all'ogetto
+La classe si occupa di leggere i dati relativi ad un evento e ritornare un puntatore all'oggetto
 
-Il costruttore accetta come parametro una stringa con la quale viene inizzializzato l'ogetto `ifstream` (`new`), il distruttore si occupa poi di eliminare la memoria
+Il costruttore accetta come parametro una stringa con la quale viene inizzializzato l'oggetto `ifstream` (`new`), il distruttore si occupa poi di eliminare la memoria
 
 La funzione `get` (pure virtual della classe base) ritorna (chiama) la funzione `readFile` che ritorna un puntatore ad un ogetto *Event*
 

@@ -8,6 +8,8 @@
 
 ## Note generali
 
+Introduzione delle classi
+
 ## Main 
 
 Creazione di un ogetto `ifstream` con la stringa passata da terminale e svolge un controllo (`if`) sulla corretta apertura del file (`is_open()`)
@@ -36,7 +38,7 @@ Adattamento della [mean_v1](../mean_v1) per utilizare le classi
 
 ## Classe `Constants` (class_constants.h)
 
-La classe dichiara come membri `public` le masse per il pionr, protone, L0 e K0
+La classe dichiara come membri `public` le masse per il pione, protone, L0 e K0
 
 I valori sono stati dichiarati `double` e con le seguenti keyword
 

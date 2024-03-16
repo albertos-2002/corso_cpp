@@ -9,9 +9,9 @@
 ---
 
 ## Note generali
----
 
-Questa versione introduce il riconoscimento degli eventi (particella che decade), in base all'appartenze ad un range di massa invariante
+
+Questa versione introduce il riconoscimento degli eventi (particella che decade), in base all'appartenze ad un range di massa invariante e al numero di particelle. Gli eventi di fondo vengono semplicemente scartati
 
 Per evitare problemi di precisione si è passati dai `float` ai `double` per molte delle variabili in gioco
 
@@ -51,25 +51,25 @@ $$ \sqrt{ \frac{somma \ dei \ quadrati \ massa \ invariante}{numero \ eventi \ a
 
 
 ## struct.h
----
+
 Invariato rispetto a [dump_v2](../dump_v2)
 
 Sono state aggiunte qui le variabili di tipo `const` che contengono i valori di riferimento della massa delle particelle e le variabili dell'intervallo di selezione
 
 ## Funzione read `Event*` (read.cc)
----
+
 Invariato rispetto a [dump_v2](../dump_v2)
 
 ## Funzione dump `void` (dump.cc)
----
+
 Invariato rispetto a [dump_v2](../dump_v2)
 
 ## Funzione clear `void` (clear.cc)
----
+
 Invariato rispetto a [dump_v2](../dump_v2)
 
 ## Funzione massa_invariante ed energia `double` (funzioni.cc)
----
+
 
 ### massa_invariante
 
@@ -94,7 +94,7 @@ La funzione calcola l'energia di una particella, la assegna ad un variabile inte
 $$ \sqrt{ { massa invariante }^2 -  \sum{momento^2} } $$
 
 ## Funzione mass `double` (mass.cc)
----
+
 La funzione accetta come argomento una *reference* a `const Event`
 
 È stato introdotto un `typedef` per rinominare `const Particle*`
@@ -131,7 +131,7 @@ Ciclo `for` su tutte le particelle:
 - tramite un ciclo `if-else` controllato dai valori al punto sopra viene fatto il `return` dell'ipotesi corretta
 
 ## Funzione add `bool` (add.cc)
----
+
 
 La funzione `add` si occupa di discriminare gli eventi e di fare l'update della somma delle masse invarianti e del loro quadrato
 

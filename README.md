@@ -21,9 +21,9 @@
 
 - [x] [hist v4](hist_v4/readme.md)
 
-- [ ] [hist v5](hist_v5/readme.md)
+- [x] [hist v5](hist_v5/readme.md)
 
-- [ ] [hist v6](hist_v6/readme.md)
+- [x] [hist v6](hist_v6/readme.md)
 
 ## File di dati
 
@@ -39,6 +39,13 @@ Il file è strutturato nel seguente modo, per ogni evento sono presenti in ordin
 
 - campo elettrico della particella `int`
 - momento x,y,z `float`
+
+Sono presenti inoltre i seguenti file 
+
+- massRanges: contiene il range delle masse
+- particleFitters: contiene range delle masse e ti valori per l'analisi dei tempi
+
+Questi file rendono il codice più flessibile e più facile da modificare per particelle diverse che richiedono la stessa analisi
 
 ## Note generali
 

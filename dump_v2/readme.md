@@ -4,14 +4,14 @@
 </div>
 
 # ParticleDump versione 2 
----
+
 
 Introduzione delle `struct`
 
 File contenente i dati [particles_events](../particles_events)
 
 ## Main
----
+
 Il maain svolge le seguenti istruzioni:
 
 - creazione di un ogetto di tipo `ifstream`, il nome del file viene recuperato della riga di comando
@@ -26,7 +26,7 @@ Il maain svolge le seguenti istruzioni:
 	(alla funzione `dump` non viene passato una reference const ma un puntatore dereferenziato)
 
 ## Struct.h `struct`
----
+
 Sono state definite due strutture
 
 `struct Event`
@@ -37,6 +37,7 @@ La struttura evento contiene
 - coordinate impatto x,y,z `float`
 - numero di particelle `int`
 - puntatore ad un array di puntatori ad una struttura di tipo Particle `Particle** ptr_name`
+(questa sintassi si riferisce ad avere un puntatore che punta al primo elemento di un array che a sua volta contiene dei puntaori di tipologia Particle, ci sono casi in cui un array decade a puntatore)
 
 	In questo modo possiamo velocemente accede ad tutte le 		particelle presenti in un evento
 
@@ -48,7 +49,7 @@ La struttura particle si occupa di contenere le variabili relative ad una partic
 - momento x,y,z `float`
 
 ## Read function `Event*`
----
+
 
 La funzione `read` svolge il medesimo compito descritto per il caso [Dump_v1](../dump_v1/readme.md)
 
@@ -65,7 +66,7 @@ Modifiche:
 La funzione ritorna un puntatore ad una struttura `Event` (quello creato in precedenza)
 
 ## Dump function `void`
----
+
 
 La funzione `dump` svolge il medesimo compito descritto per il caso [Dump_v1](../dump_v1/readme.md)
 
@@ -80,7 +81,7 @@ Sono state fatte le seguenti modifiche:
 	gli elementi contenuti nella struttura di tipo `Event` sono utilizzati tramite `.`, gli elementi contenuti in una struttura di tipo `Particle` sono utilizzati tramite `->` dato che la struttura `Event` contiene dei *puntatori* alla struttura `Particle`
 
 ## Clear function `void`
----
+
 Il compito della funzione `clear` è di eliminare la memoria creata dinamicamente
 
 La funzione accetta come argomento un puntatore ad una struttura `Event`, svolge un ciclo `for` ed elimina tutte le struttura `Particle` contenute nel *puntatore di puntatori*, successivamente viede eliminato il *puntatore di puntatori* e per ultimo viene eliminato il puntatore alla struttura `Event`

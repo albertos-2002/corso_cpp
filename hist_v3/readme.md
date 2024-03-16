@@ -47,5 +47,5 @@ Il nome del file root viene estratto dalla riga di comando, dopo la keyword *plo
 
 ## Main 
 
-È rimasto sostanzialmente invariato, il vettore che contiene gli analizzatori, non viene riempito con una serie di push_back ma viene riempito da una chiamata alla funzione `create` di `AnalysisFactori`
+È rimasto sostanzialmente invariato, il vettore che contiene gli analizzatori, non viene riempito con una serie di push_back ma viene riempito da una chiamata alla funzione `create` di `AnalysisFactory`
 
