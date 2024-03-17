@@ -12,7 +12,7 @@ File contenente i dati [particles_events](../particles_events)
 
 ## Main
 
-Il maain svolge le seguenti istruzioni:
+Il main svolge le seguenti istruzioni:
 
 - creazione di un ogetto di tipo `ifstream`, il nome del file viene recuperato della riga di comando
 
@@ -21,7 +21,7 @@ Il maain svolge le seguenti istruzioni:
 - Ciclo `while` il cui controllo è dato dall'ogetto `ifstream`
 
 	chimata della funzione
-	`read` `dump` `clear`
+	`read`, `dump`, `clear`
 
 	(alla funzione `dump` non viene passato una reference const ma un puntatore dereferenziato)
 
@@ -59,7 +59,7 @@ Modifiche:
 
 - Al *puntatore di puntatori* viene assegnato (`new`) un `array` di puntatori alle strutture `Particle` pari al numero di particelle letto dall'evento
 
-- Viene svolto un ciclo `for` per un numero pari a quello di particelle, as ogni puntatore creato al punto precedente (contenuto nel *puntatore di puntatori*) viene creata (`new`) una struttura `Particle`, la quale viene riempita con i dati letti dall'evento  
+- Viene svolto un ciclo `for` per un numero pari a quello di particelle, ad ogni puntatore creato al punto precedente (contenuto nel *puntatore di puntatori*) viene creata (`new`) una struttura `Particle`, la quale viene riempita con i dati letti dall'evento  
 
 - Al termine del file (`eof`) viene restituito un `nullptr`
 

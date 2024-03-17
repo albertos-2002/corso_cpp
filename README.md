@@ -49,7 +49,7 @@ Questi file rendono il codice più flessibile e più facile da modificare per pa
 
 ## Note generali
 
-Per ogni esercizio è predente un file chiamato *catMe* che contiene il comando di compilazione ed esecuzione
+Per ogni esercizio è presente un file chiamato *catMe* che contiene il comando di compilazione ed esecuzione
 
 Negli esercizi che utilizzano ROOT (*hist_vX*) potrebbe essere necessario cambiare la stringa di compilazione 
 

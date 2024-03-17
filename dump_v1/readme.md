@@ -50,4 +50,4 @@ invece come *pass-by-value* i seguenti `array`
 - campo elettrico
 - momento x,y,z
 
-Il *dump* degli eventi viene svolto printando a schermo i primi valori e tramice un ciclo `for` per tutte le particelle dell'evento
+Il *dump* degli eventi viene svolto printando a schermo i primi valori e tramite un ciclo `for` per tutte le particelle dell'evento

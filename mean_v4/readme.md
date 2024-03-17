@@ -106,16 +106,16 @@ Le seguenti classi non sono state modificate sensibilmente, al massimo sono stat
 La sequenza logica del main è la seguente:
 
 - copia su una stringa della keyword per la decisione tra lettura da file e simulazione degli eventi
--  creazione di un puntatore a `EventSourc`
+-  creazione di un puntatore a `EventSource`
 - Controllo tramite un `if-elseif-else` se la prima keyword è *input*, *sim* o una stringa non riconosicuta
 
 	- se la stringa è *input* al puntatore `EventSource` viene assegnato un ogetto di tipo `EventReadFromFile`
 	- se la stringa è *sim*, vengono estratti il numero di eventi e il seed per la simulazione e al puntatore `EventSource` viene assegnato un ogetto di tipo `EventSim`
 
-- viene creato un vettore contenete 2 oggetti, un `ParticleMass`e un `EventDump`
+- viene creato un vettore contenete 2 oggetti, un `ParticleMass` e un `EventDump`
 - per entrambi gli analizzatori viene chiamata la funzione `beginJob`
 - viene creato un puntatore alla classe `Event`
-- un ciclo `while`, estrare i singoli eventi chiamando la funzione `get` relativa all'ogetto `EventSource` assegnato in precedenza nol controllo
+- un ciclo `while`, estrare i singoli eventi chiamando la funzione `get` relativa all'ogetto `EventSource` assegnato in precedenza nel controllo
 
 	per ogni analizzatore viene chiamata la funzione `process`
 

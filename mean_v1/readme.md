@@ -121,7 +121,7 @@ Ciclo `for` su tutte le particelle:
 	- per ipotesi K0 con la massa del pione
 	- per ipotesi di L0, tramite un ciclo `if-else` con la massa del protone se la particella è carica positivamente e con la massa del pione se negativa
 	
-- controllo (`if`) se i conuter per le particelle cariche positivamente o negativamente differice da 1
+- controllo (`if`) se i counter per le particelle cariche positivamente o negativamente differice da 1
 (`return -1` valore non fisico)
 - calcolo della massa invariante per entrambe le ipotesi (con le relative energie calcolate in precedenza) chimando la funzione `massa_invariante`
 - calcolo della differenza tra la massa invariante e la relativa costante nota a priori (`abs()`) 
