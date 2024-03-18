@@ -39,7 +39,7 @@ La struttura evento contiene
 - puntatore ad un array di puntatori ad una struttura di tipo Particle `Particle** ptr_name`
 (questa sintassi si riferisce ad avere un puntatore che punta al primo elemento di un array che a sua volta contiene dei puntaori di tipologia Particle, ci sono casi in cui un array decade a puntatore)
 
-	In questo modo possiamo velocemente accede ad tutte le 		particelle presenti in un evento
+	In questo modo possiamo velocemente accede a tutte le 		particelle presenti in un evento
 
 `struct Particle`
 

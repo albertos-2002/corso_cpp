@@ -16,7 +16,7 @@ La sequenza del main è la seguente:
 
 	L'operatore `>>` automaticamente tiene traccia del punto del file in cui la lettura si trova e del controllo del raggiungimento del carattere speciale `eof`
 
-Nel ciclo `while`, che rimane `true` fino al raggiungimento del carattere speciale `eof`, viene letto il primo valore di un evento (*id della misura*), successivamente viene passato il controllo alla funzione `read` che si occupa di leggere e assegnare i successivi valori (la *reference* al file permette di mantenere correttamente il punto di lettura del file durante tutto il cilo) e ritornare il valore per *numero di particelle* che viene assegnato direttamente nel main, successivamente la funzione `dump` fa il print su scermo degli eventi
+Nel ciclo `while`, che rimane `true` fino al raggiungimento del carattere speciale `eof`, viene letto il primo valore di un evento (*id della misura*), successivamente viene passato il controllo alla funzione `read` che si occupa di leggere e assegnare i successivi valori (la *reference* al file permette di mantenere correttamente il punto di lettura del file durante tutto il ciclo) e ritornare il valore per *numero di particelle* che viene assegnato direttamente nel main, successivamente la funzione `dump` fa il print su scermo degli eventi
 
 ## Read function `int`
 ---
