@@ -43,7 +43,7 @@ Il file è strutturato nel seguente modo, per ogni evento sono presenti in ordin
 Sono presenti inoltre i seguenti file 
 
 - massRanges: contiene il range delle masse
-- particleFitters: contiene range delle masse e ti valori per l'analisi dei tempi
+- particleFitters: contiene il range delle masse e i valori per l'analisi dei tempi
 
 Questi file rendono il codice più flessibile e più facile da modificare per particelle diverse che richiedono la stessa analisi
 
